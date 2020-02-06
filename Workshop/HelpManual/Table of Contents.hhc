@@ -29,7 +29,7 @@
 			<param name="Local" value="..\4.html">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="Engine extensions">
+			<param name="Name" value="Engine Extensions">
 			<param name="Local" value="..\5.html">
 			</OBJECT>
 	</UL>
