@@ -4,7 +4,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="APP.Login">
+             x:Class="APP.Register">
     <ContentPage.Content>
 
         <Grid>
@@ -16,28 +16,19 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" />
-<<<<<<< HEAD
-                    <RowDefinition Height="Auto" />
-=======
->>>>>>> RegisterView
                 </Grid.RowDefinitions>
 
                 <Image Grid.Row="0" Source="valper.jpg" WidthRequest="150" HeightRequest="150" Margin="0,50,0,30"  />
 
                 <StackLayout Grid.Row="1" Padding="30,20">
-<<<<<<< HEAD
-                    <Entry Placeholder="Username" PlaceholderColor="White"/>
-=======
                     <Entry Placeholder="E-mail" PlaceholderColor="White"/>
->>>>>>> RegisterView
+                    <Entry Placeholder="Full name" PlaceholderColor="White"/>
                     <Entry Placeholder="Password" PlaceholderColor="White" IsPassword="True"/>
-                    <Button Text="Login" BackgroundColor="White" BorderRadius="20" TextColor="#1E90FF" />
+                    <Entry Placeholder="Confirm password" PlaceholderColor="White" IsPassword="True"/>
+                    <Button Text="Register" BackgroundColor="White" BorderRadius="20" TextColor="#1E90FF" />
 
-                    <StackLayout Orientation="Horizontal" Padding="30,20" >
-                        <Label Text="Create new account" HorizontalOptions="EndAndExpand" FontAttributes="Bold" TextColor="White"/>
-                    </StackLayout>
                 </StackLayout>
-                
+
             </Grid>
 
         </Grid>
