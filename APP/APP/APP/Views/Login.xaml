@@ -16,20 +16,12 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" />
-<<<<<<< HEAD
-                    <RowDefinition Height="Auto" />
-=======
->>>>>>> RegisterView
                 </Grid.RowDefinitions>
 
                 <Image Grid.Row="0" Source="valper.jpg" WidthRequest="150" HeightRequest="150" Margin="0,50,0,30"  />
 
                 <StackLayout Grid.Row="1" Padding="30,20">
-<<<<<<< HEAD
-                    <Entry Placeholder="Username" PlaceholderColor="White"/>
-=======
                     <Entry Placeholder="E-mail" PlaceholderColor="White"/>
->>>>>>> RegisterView
                     <Entry Placeholder="Password" PlaceholderColor="White" IsPassword="True"/>
                     <Button Text="Login" BackgroundColor="White" BorderRadius="20" TextColor="#1E90FF" />
 
