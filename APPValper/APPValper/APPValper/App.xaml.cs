@@ -1,10 +1,10 @@
 ﻿using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using APP.Services;
-using APP.Views;
+using APPValper.Services;
+using APPValper.Views;
 
-namespace APP
+namespace APPValper
 {
     public partial class App : Application
     {

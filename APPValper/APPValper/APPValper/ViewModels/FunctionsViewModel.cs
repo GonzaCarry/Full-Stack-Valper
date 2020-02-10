@@ -1,7 +1,7 @@
-﻿using APP.Models;
-using APP.Models;
-using APP.Resources;
-using APP.Views;
+﻿using APPValper.Models;
+using APPValper.Models;
+using APPValper.Resources;
+using APPValper.Views;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -11,7 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace APP.ViewModels
+namespace APPValper.ViewModels
 {
     class FunctionsViewModel : Function
     {
