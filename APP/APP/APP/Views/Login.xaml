@@ -18,7 +18,18 @@
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
 
-                <Image Grid.Row="0" Source="valper.jpg" WidthRequest="150" HeightRequest="150" Margin="0,50,0,30"  />
+                <StackLayout Padding="40">
+                    <Frame CornerRadius="100" 
+                    HeightRequest="175"
+                    WidthRequest="175"
+                    HorizontalOptions="Center"
+                    Padding="26"
+                    IsClippedToBounds="True">
+                        <Image Source="valper.jpg" 
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center" />
+                    </Frame>
+                </StackLayout>
 
                 <StackLayout Grid.Row="1" Padding="30,20">
                     <Entry Placeholder="E-mail" PlaceholderColor="White"/>
@@ -29,7 +40,7 @@
                         <Label Text="Create new account" HorizontalOptions="EndAndExpand" FontAttributes="Bold" TextColor="White"/>
                     </StackLayout>
                 </StackLayout>
-                
+
             </Grid>
 
         </Grid>
