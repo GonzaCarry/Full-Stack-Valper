@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="APPValper.Views.EditUser">
+    <ContentPage.Content>
+
+        <Grid>
+
+            <Image Source="fondo.jpg" Aspect="AspectFill" />
+            <BoxView Color="#1E90FF" Opacity="0.8" />
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <StackLayout Padding="40">
+                    <Frame CornerRadius="100" 
+                    HeightRequest="150"
+                    WidthRequest="150"
+                    HorizontalOptions="Center"
+                    Padding="28"
+                    IsClippedToBounds="True">
+                        <Image Source="userIcon.png" 
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center" />
+                    </Frame>
+                    <Button Text="Change Image" BackgroundColor="White" BorderRadius="20" TextColor="#1E90FF" HorizontalOptions="Center"/>
+                </StackLayout>
+
+                <StackLayout Grid.Row="1" Padding="30,0">
+                    <StackLayout Orientation="Horizontal">
+                        <Entry Placeholder="Actual name" PlaceholderColor="White" />
+                        <Button Text="Change name" BackgroundColor="White" BorderRadius="20" TextColor="#1E90FF" HorizontalOptions="EndAndExpand"/>
+
+                    </StackLayout>
+                    <Entry Placeholder="Actual password" PlaceholderColor="White"/>
+                    <Entry Placeholder="New Password" PlaceholderColor="White" IsPassword="True"/>
+                    <Entry Placeholder="Confirm password" PlaceholderColor="White" IsPassword="True"/>
+                    <Button Text="Change Password" BackgroundColor="White" BorderRadius="20" TextColor="#1E90FF" />
+
+                </StackLayout>
+
+            </Grid>
+
+        </Grid>
+
+
+    </ContentPage.Content>
+</ContentPage>
