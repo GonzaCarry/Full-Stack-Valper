@@ -36,6 +36,9 @@ namespace APPValper.Views
                     case (int)MenuItemType.Login:
                         MenuPages.Add(id, new NavigationPage(new Login()));
                         break;
+                    case (int)MenuItemType.Options:
+                        MenuPages.Add(id, new NavigationPage(new Options()));
+                        break;
                 }
             }
 
