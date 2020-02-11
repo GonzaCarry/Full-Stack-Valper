@@ -8,6 +8,7 @@
              Title="{Binding Title}"
              x:Name="BrowseItemsPage">
 
+<<<<<<< HEAD
 <<<<<<< Updated upstream
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Add" Clicked="AddItem_Clicked" />
@@ -55,6 +56,8 @@
     </StackLayout>
     
 =======
+=======
+>>>>>>> testAPI
     <Grid>
         <Image Source="fondo.jpg" Aspect="AspectFill" />
         <BoxView Color="#1E90FF" Opacity="0.8" />
@@ -85,5 +88,8 @@
         </Grid>
     </Grid>
 
+<<<<<<< HEAD
 >>>>>>> Stashed changes
+=======
+>>>>>>> testAPI
 </ContentPage>

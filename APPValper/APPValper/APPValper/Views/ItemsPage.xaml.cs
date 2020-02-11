@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 using System.ComponentModel;
 using System.Linq;
@@ -55,6 +56,8 @@ namespace APPValper.Views
     }
 }
 =======
+=======
+>>>>>>> testAPI
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -73,4 +76,7 @@ namespace APPValper.Views
             }
         }
     }
+<<<<<<< HEAD
 >>>>>>> Stashed changes
+=======
+>>>>>>> testAPI

@@ -32,6 +32,7 @@
                     <Button Text="Change Image" BackgroundColor="White" BorderRadius="20" TextColor="#1E90FF" HorizontalOptions="Center"/>
                 </StackLayout>
 
+<<<<<<< HEAD
 <<<<<<< Updated upstream
                 <StackLayout Grid.Row="1" Padding="30,5">
                     <StackLayout Orientation="Horizontal" >
@@ -41,6 +42,11 @@
                     <StackLayout Orientation="Horizontal">
                         <Entry Placeholder="Actual name" PlaceholderColor="White" />
 >>>>>>> Stashed changes
+=======
+                <StackLayout Grid.Row="1" Padding="30,0">
+                    <StackLayout Orientation="Horizontal">
+                        <Entry Placeholder="Actual name" PlaceholderColor="White" />
+>>>>>>> testAPI
                         <Button Text="Change name" BackgroundColor="White" BorderRadius="20" TextColor="#1E90FF" HorizontalOptions="EndAndExpand"/>
 
                     </StackLayout>
