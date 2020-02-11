@@ -1,0 +1,4 @@
+tab navigation = pestañas
+stack navigation = vista dentro de vista que permita volver hacia atrás
+draw navigation = menu las distintas pestañas a las que puedes acceder
+bottom navigation bar = pestañas siempre presentes en la parte inferior
