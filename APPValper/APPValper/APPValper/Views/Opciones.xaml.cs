@@ -10,11 +10,11 @@ using Xamarin.Forms.Xaml;
 namespace APPValper.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Options : ContentPage
+    public partial class Opciones : ContentPage
     {
-        public Options()
+        public Opciones()
         {
-            //InitializeComponent();
+            InitializeComponent();
         }
     }
 }
