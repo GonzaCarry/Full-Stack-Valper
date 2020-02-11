@@ -33,8 +33,8 @@ namespace APPValper.Views
                     case (int)MenuItemType.Browse:
                         MenuPages.Add(id, new NavigationPage(new ItemsPage()));
                         break;
-                    case (int)MenuItemType.About:
-                        MenuPages.Add(id, new NavigationPage(new EditUser()));
+                    case (int)MenuItemType.Login:
+                        MenuPages.Add(id, new NavigationPage(new Login()));
                         break;
                 }
             }
