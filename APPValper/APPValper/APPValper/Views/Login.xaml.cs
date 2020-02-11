@@ -17,7 +17,6 @@ namespace APPValper.Views
         public Login()
         {
             InitializeComponent();
-            NavigationPage.SetHasNavigationBar(this, false);
             BindingContext = Context;
         }
     }
