@@ -21,7 +21,8 @@ namespace APPValper.Views
             menuItems = new List<HomeMenuItem>
             {
                 new HomeMenuItem {Id = MenuItemType.Browse, Title="Browse" },
-                new HomeMenuItem {Id = MenuItemType.Login, Title="Login" }
+                new HomeMenuItem {Id = MenuItemType.Login, Title="Login" },
+                new HomeMenuItem {Id = MenuItemType.Options, Title="Options" }
             };
 
             ListViewMenu.ItemsSource = menuItems;

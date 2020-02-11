@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="APPValper.Views.Options">
+
+    <ContentPage.Content>
+
+        <Grid>
+
+            <Image Source="fondo.jpg" Aspect="AspectFill" />
+            <BoxView Color="#1E90FF" Opacity="0.8" />
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <StackLayout Padding="40,30,0,0">
+                    <Frame CornerRadius="100" 
+                    HeightRequest="50"
+                    WidthRequest="50"
+                    HorizontalOptions="Start"
+                    Padding="26"
+                    IsClippedToBounds="True">
+                        <Image Source="espanol.png" 
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                            Aspect="AspectFill"/>
+                    </Frame>
+
+                    <StackLayout Padding="35,10,0,0">
+                        <CheckBox Color="White" HorizontalOptions="Start" IsChecked="False"/>
+                    </StackLayout>
+                </StackLayout>
+                
+                <StackLayout Padding="0,30,40,0" >
+                    <Frame CornerRadius="100" 
+                    HeightRequest="50"
+                    WidthRequest="50"
+                    HorizontalOptions="End"
+                    Padding="26"
+                    IsClippedToBounds="True">
+                        <Image Source="ingles.png" 
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center" />
+                    </Frame>
+
+                    <StackLayout Padding="0,10,30,0">
+                        <CheckBox Color="White" HorizontalOptions="End" IsChecked="true" />
+                    </StackLayout>
+                </StackLayout>
+
+                <StackLayout Grid.Row="1" Padding="30,50">
+                    <Entry Text="{Binding IpAddress}" Placeholder="IP Address" PlaceholderColor="White"/>
+                    <Button Command="{Binding CheckIp}" Text="Try this Ip" BackgroundColor="White" BorderRadius="20" TextColor="#1E90FF" />
+
+                </StackLayout>
+
+
+            </Grid>
+
+        </Grid>
+
+
+    </ContentPage.Content>
+</ContentPage>
