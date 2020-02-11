@@ -8,9 +8,9 @@ namespace APPValper.Services
 {
     class LoginActiveDirectory
     {
-        public static String Name, NTusername, version;
-        public String message;
-        public void login()
+        public static string Name, NTusername, version;
+        public string message;
+        public void Login(string Username, string Password)
         {
             if (AuthUser(Username, Password))
             {
@@ -18,7 +18,7 @@ namespace APPValper.Services
             }
         }
         string co = string.Empty;
-        private bool AuthUser(String Username, String Password)
+        private bool AuthUser(string Username, string Password)
         {
             bool ret = false;
             try

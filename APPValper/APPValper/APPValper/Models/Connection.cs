@@ -7,7 +7,7 @@ using System.Text;
 
 namespace APPValper.Models
 {
-    class Connection : INotifyPropertyChanged
+    public class Connection : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
