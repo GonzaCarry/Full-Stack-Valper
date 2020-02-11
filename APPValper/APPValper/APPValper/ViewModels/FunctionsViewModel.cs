@@ -24,8 +24,8 @@ namespace APPValper.ViewModels
 
         public FunctionsViewModel()
         {
-            ListView();
-            ListViewAsync();
+            //ListView();
+            //ListViewAsync();
             SaveCommand = new Command(async () => await Save(), () => !IsBusy);
             ModifyCommand = new Command(async () => await Modify(), () => !IsBusy);
             DeleteCommand = new Command(async () => await Delete(), () => !IsBusy);
@@ -37,7 +37,7 @@ namespace APPValper.ViewModels
         private void ListView()
         {
             Functions = new ObservableCollection<Function>();
-            FunctionsAux = service.ConsultLocal();
+            //FunctionsAux = service.ConsultLocal();
             for (int i = 0; i < FunctionsAux.Count; i++)
             {
                 Functions.Add(FunctionsAux[i]);
@@ -46,7 +46,7 @@ namespace APPValper.ViewModels
 
         private async Task ListViewAsync()
         {
-            FunctionsTask = service.Consult();
+            //FunctionsTask = service.Consult();
             FunctionsAux = await FunctionsTask;
             for (int i = 0; i < FunctionsAux.Count; i++)
             {
@@ -85,8 +85,8 @@ namespace APPValper.ViewModels
             }
             else
             {
-                service.Save(model);
-                service.SaveLocal(model);
+                //service.Save(model);
+                //service.SaveLocal(model);
                 Functions.Add(model);
                 Clean();
             }
@@ -104,8 +104,8 @@ namespace APPValper.ViewModels
                 Description = Description,
                 Id = Id
             };
-            service.Modify(model);
-            service.ModifyLocal(model);
+            //service.Modify(model);
+            //service.ModifyLocal(model);
             var item = Functions.FirstOrDefault(i => i.Id == model.Id);
             if (item != null)
             {
@@ -128,8 +128,8 @@ namespace APPValper.ViewModels
                 Description = Description,
                 Id = Id
             };
-            service.DeleteLocal(model);
-            service.Delete(model.Id);
+            //service.DeleteLocal(model);
+            //service.Delete(model.Id);
             var item = Functions.FirstOrDefault(i => i.Id == model.Id);
             Functions.Remove(item);
             Clean();
@@ -159,7 +159,7 @@ namespace APPValper.ViewModels
 
         private void Back()
         {
-            Application.Current.MainPage = new NavigationPage(new MainPage());
+            Application.Current.MainPage = new MainPage();
         }
     }
 }

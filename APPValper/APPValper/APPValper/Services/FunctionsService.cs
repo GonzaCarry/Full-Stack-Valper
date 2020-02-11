@@ -8,6 +8,8 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
+using Microsoft.IdentityModel.Protocols;
+using System.Configuration;
 
 namespace APPValper.Resources
 {
@@ -18,10 +20,10 @@ namespace APPValper.Resources
 
         public FunctionsService()
         {
-            using (var data = new DataAccess())
-            {
-                apiUrl = data.GetConnection().Url + "/api/Functions";
-            }
+            //using (var data = new DataAccess())
+            //{
+            //    apiUrl = data.GetConnection().Url + "/api/Functions";
+            //}
             if (Functions == null)
             {
                 Functions = new ObservableCollection<Function>();
@@ -53,12 +55,12 @@ namespace APPValper.Resources
 
         public ObservableCollection<Function> ConsultLocal()
         {
-            using (var data = new DataAccess())
-            {
-                var list = data.GetFunctions();
-                foreach (var item in list)
-                    Functions.Add(item);
-            }
+            //using (var data = new DataAccess())
+            //{
+            //    //var list = data.GetFunctions();
+            //    //foreach (var item in list)
+            //        //Functions.Add(item);
+            //}
             return Functions;
         }
 
@@ -89,10 +91,10 @@ namespace APPValper.Resources
 
         public void SaveLocal(Function model)
         {
-            using (var data = new DataAccess())
-            {
-                data.InsertFunction(model);
-            }
+            //using (var data = new DataAccess())
+            //{
+            //    //data.InsertFunction(model);
+            //}
         }
 
         public async void Modify(Function model)
@@ -118,10 +120,10 @@ namespace APPValper.Resources
 
         public void ModifyLocal(Function model)
         {
-            using (var data = new DataAccess())
-            {
-                data.ModifyFunction(model);
-            }
+            //using (var data = new DataAccess())
+            //{
+            //    //data.ModifyFunction(model);
+            //}
         }
 
         public async void Delete(string idFunction)
@@ -143,10 +145,10 @@ namespace APPValper.Resources
 
         public void DeleteLocal(Function model)
         {
-            using (var data = new DataAccess())
-            {
-                data.DeleteFunction(model);
-            }
+            //using (var data = new DataAccess())
+            //{
+            //    //data.DeleteFunction(model);
+            //}
         }
 
         private HttpClient CreateClient()
@@ -155,7 +157,7 @@ namespace APPValper.Resources
             client.BaseAddress = new Uri(apiUrl);
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", ConfigurationManager.AppSettings["token"].ToString());
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", ConfigurationManager.AppSettings["token"].ToString());
             client.Timeout = TimeSpan.FromMinutes(10);
             client.Timeout = new TimeSpan(0, 0, 0, 0, -1);
             return client;

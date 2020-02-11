@@ -13,12 +13,13 @@ namespace APPValper.Services
     class DataAccess : IDisposable
     {
         private SQLiteConnection connection;
-
+         
         public DataAccess()
         {
             var config = DependencyService.Get<IConfig>();
             connection = new SQLiteConnection(Path.Combine(config.DirDB, "ValperDB.db3"), false);
             connection.CreateTable<Function>();
+            connection.CreateTable<Connection>();
         }
 
         public void InsertFunction(Function function)

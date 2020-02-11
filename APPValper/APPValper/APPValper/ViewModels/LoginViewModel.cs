@@ -16,8 +16,10 @@ namespace APPValper.ViewModels
         public Command RegisterCommand { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
-        public LoginViewModel()
+        INavigation Navigation;
+        public LoginViewModel(INavigation Nav)
         {
+            Navigation = Nav;
             LoginCommand = new Command(async () => await Login(), () => !IsBusy);
             RegisterCommand = new Command(async () => await Register(), () => !IsBusy);
         }
@@ -34,10 +36,7 @@ namespace APPValper.ViewModels
 
         private async Task Register()
         {
-            IsBusy = true;
-            Application.Current.MainPage = new NavigationPage(new Register());
-            await Task.Delay(2000);
-            IsBusy = false;
+            await Navigation.PushAsync(new Register());
         }
     }
 }

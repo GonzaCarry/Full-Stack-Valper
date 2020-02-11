@@ -1,6 +1,5 @@
 ﻿using APPValper.ViewModels;
 using APPValper.Models;
-using APPValper.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,27 +17,29 @@ namespace APPValper.Views
         FunctionsViewModel Context = new FunctionsViewModel();
         public Functions()
         {
+            Console.WriteLine("pasa");
             InitializeComponent();
+
             NavigationPage.SetHasNavigationBar(this, false);
             BindingContext = Context;
-            LvFunctions.ItemSelected += LvFunctions_ItemSelected;
+            //LvFunctions.ItemSelected += LvFunctions_ItemSelected;
         }
 
-        private void LvFunctions_ItemSelected(object sender, SelectedItemChangedEventArgs e)
-        {
-            if (e.SelectedItem != null)
-            {
-                Function model = (Function)e.SelectedItem;
-                if (Context.GoBool)
-                {
-                    ((ListView)sender).SelectedItem = null;
-                    //Navigation.PushAsync(new DetallePage(model));
-                }
-                Context.Server = model.Server;
-                Context.Action = model.Action;
-                Context.Description = model.Description;
-                Context.Id = model.Id;
-            }
-        }
+        //private void LvFunctions_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        //{
+        //    if (e.SelectedItem != null)
+        //    {
+        //        Function model = (Function)e.SelectedItem;
+        //        if (Context.GoBool)
+        //        {
+        //            ((ListView)sender).SelectedItem = null;
+        //            //Navigation.PushAsync(new DetallePage(model));
+        //        }
+        //        Context.Server = model.Server;
+        //        Context.Action = model.Action;
+        //        Context.Description = model.Description;
+        //        Context.Id = model.Id;
+        //    }
+        //}
     }
 }
