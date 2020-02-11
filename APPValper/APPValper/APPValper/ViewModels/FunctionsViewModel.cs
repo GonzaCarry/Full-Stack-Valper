@@ -1,5 +1,8 @@
 ﻿using APPValper.Models;
+<<<<<<< Updated upstream
 using APPValper.Models;
+=======
+>>>>>>> Stashed changes
 using APPValper.Resources;
 using APPValper.Views;
 using Newtonsoft.Json;

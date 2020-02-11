@@ -20,8 +20,14 @@ namespace APPValper.Views
 
             menuItems = new List<HomeMenuItem>
             {
+<<<<<<< Updated upstream
                 new HomeMenuItem {Id = MenuItemType.Browse, Title="Browse" },
                 new HomeMenuItem {Id = MenuItemType.About, Title="Login" }
+=======
+                new HomeMenuItem {Id = MenuItemType.Browse, Title="Menu" },
+                new HomeMenuItem {Id = MenuItemType.About, Title="Edit user" },
+                new HomeMenuItem {Id = MenuItemType.About, Title="Options" }
+>>>>>>> Stashed changes
             };
 
             ListViewMenu.ItemsSource = menuItems;

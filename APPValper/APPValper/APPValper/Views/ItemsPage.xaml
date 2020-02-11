@@ -8,6 +8,7 @@
              Title="{Binding Title}"
              x:Name="BrowseItemsPage">
 
+<<<<<<< Updated upstream
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Add" Clicked="AddItem_Clicked" />
     </ContentPage.ToolbarItems>
@@ -53,4 +54,36 @@
         </ListView>
     </StackLayout>
     
+=======
+    <Grid>
+        <Image Source="fondo.jpg" Aspect="AspectFill" />
+        <BoxView Color="#1E90FF" Opacity="0.8" />
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <StackLayout Grid.Row="1" Padding="15,20">
+                <Button Text="Functions" BackgroundColor="white" BorderRadius="20" TextColor="#1E90FF" />
+                <Button Text="Change User" BackgroundColor="white" BorderRadius="20" TextColor="#1E90FF" />
+            </StackLayout>
+
+            <Frame Grid.Row="2" BackgroundColor="#1E90FF" BorderColor="WhiteSmoke" HasShadow="True" CornerRadius="10" Margin="10,10,10,10" Padding="0" VerticalOptions="Start">
+                <StackLayout Padding="45,30">
+                    <Label Text="Valper Solutions and Maintenance, S.L." HorizontalOptions="Center" FontAttributes="Bold" TextColor="White" FontSize="30" />
+                    <Label Text="Advice, supply, maintenance and support of computer systems. Custom software development. Software Marketing for the automotive sector. There is already a distribution and maintenance agreement with a multinational company. Development of integration applications for the aforementioned software to be distributed nationwide." HorizontalOptions="Center" TextColor="White" FontSize="Body" />
+                </StackLayout>
+            </Frame>
+
+            <StackLayout Grid.Row="3" Padding="15,10">
+                <Button Text="Exit" BackgroundColor="white" BorderRadius="20" TextColor="#1E90FF" />
+            </StackLayout>
+
+        </Grid>
+    </Grid>
+
+>>>>>>> Stashed changes
 </ContentPage>
