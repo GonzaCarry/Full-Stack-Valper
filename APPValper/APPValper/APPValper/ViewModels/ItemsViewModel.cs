@@ -7,6 +7,8 @@ using Xamarin.Forms;
 
 using APPValper.Models;
 using APPValper.Views;
+using APPValper.Services;
+using System.Collections.Generic;
 
 namespace APPValper.ViewModels
 {
@@ -14,9 +16,17 @@ namespace APPValper.ViewModels
     {
         public ObservableCollection<Item> Items { get; set; }
         public Command LoadItemsCommand { get; set; }
+        public Command CRUDCommand { get; set; }
+        public Command ChangeUserCommand { get; set; }
+        public Command ExitCommand { get; set; }
+        INavigation Navigation;
 
-        public ItemsViewModel()
+        public ItemsViewModel(INavigation Nav)
         {
+            Navigation = Nav;
+            CRUDCommand = new Command(async () => await CRUD(), () => !IsBusy);
+            ChangeUserCommand = new Command(async () => await ChangeUser(), () => !IsBusy);
+            ExitCommand = new Command(Exit);
             Title = "Browse";
             Items = new ObservableCollection<Item>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
@@ -54,5 +64,21 @@ namespace APPValper.ViewModels
                 IsBusy = false;
             }
         }
+
+        private async Task CRUD()
+        {
+            await Navigation.PushAsync(new Functions());
+        }
+
+        private async Task ChangeUser()
+        {
+            await Navigation.PushAsync(new Login());
+        }
+
+        private void Exit()
+        {
+            Android.OS.Process.KillProcess(Android.OS.Process.MyPid());
+        }
+
     }
 }

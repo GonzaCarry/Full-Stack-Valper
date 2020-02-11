@@ -20,8 +20,8 @@
             </Grid.RowDefinitions>
 
             <StackLayout Grid.Row="1" Padding="15,20">
-                <Button Text="Functions" BackgroundColor="white" BorderRadius="20" TextColor="#1E90FF" />
-                <Button Text="Change User" BackgroundColor="white" BorderRadius="20" TextColor="#1E90FF" />
+                <Button Command="{Binding CRUDCommand}" Text="Functions" BackgroundColor="white" BorderRadius="20" TextColor="#1E90FF" />
+                <Button Command="{Binding ChangeUserCommand}" Text="Change User" BackgroundColor="white" BorderRadius="20" TextColor="#1E90FF" />
             </StackLayout>
 
             <Frame Grid.Row="2" BackgroundColor="#1E90FF" BorderColor="WhiteSmoke" HasShadow="True" CornerRadius="10" Margin="10,10,10,10" Padding="0" VerticalOptions="Start">
@@ -32,7 +32,7 @@
             </Frame>
 
             <StackLayout Grid.Row="3" Padding="15,10">
-                <Button Text="Exit" BackgroundColor="white" BorderRadius="20" TextColor="#1E90FF" />
+                <Button Command="{Binding ExitCommand}" Text="Exit" BackgroundColor="white" BorderRadius="20" TextColor="#1E90FF" />
             </StackLayout>
 
         </Grid>

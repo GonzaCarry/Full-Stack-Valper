@@ -14,7 +14,7 @@ namespace APPValper.Views
     {
         public Options()
         {
-            InitializeComponent();
+            //InitializeComponent();
         }
     }
 }

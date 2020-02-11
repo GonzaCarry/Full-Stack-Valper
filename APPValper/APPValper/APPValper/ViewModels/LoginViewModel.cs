@@ -1,5 +1,6 @@
 ﻿using APPValper.Models;
 using APPValper.Services;
+using APPValper.Views;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -18,13 +19,23 @@ namespace APPValper.ViewModels
         public LoginViewModel()
         {
             LoginCommand = new Command(async () => await Login(), () => !IsBusy);
-            //RegisterCommand = new Command(async () => await Register(), () => !IsBusy);
+            RegisterCommand = new Command(async () => await Register(), () => !IsBusy);
         }
 
         private async Task Login()
         {
             IsBusy = true;
+            Console.WriteLine(Username);
+            Console.WriteLine(Password);
             service.Login(Username, Password);
+            await Task.Delay(2000);
+            IsBusy = false;
+        }
+
+        private async Task Register()
+        {
+            IsBusy = true;
+            Application.Current.MainPage = new NavigationPage(new Register());
             await Task.Delay(2000);
             IsBusy = false;
         }

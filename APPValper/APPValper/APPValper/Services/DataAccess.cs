@@ -8,7 +8,7 @@ using SQLite;
 using APPValper.Models;
 using APPValper.Services;
 
-namespace APP.Services
+namespace APPValper.Services
 {
     class DataAccess : IDisposable
     {
