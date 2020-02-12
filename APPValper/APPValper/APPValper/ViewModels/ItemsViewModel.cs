@@ -19,11 +19,13 @@ namespace APPValper.ViewModels
         public Command CRUDCommand { get; set; }
         public Command ChangeUserCommand { get; set; }
         public Command ExitCommand { get; set; }
+        public Command OptionsCommand { get; set; }
         INavigation Navigation;
 
         public ItemsViewModel(INavigation Nav)
         {
             Navigation = Nav;
+            OptionsCommand = new Command(async () => await Options(), () => !IsBusy);
             CRUDCommand = new Command(async () => await CRUD(), () => !IsBusy);
             ChangeUserCommand = new Command(async () => await ChangeUser(), () => !IsBusy);
             ExitCommand = new Command(Exit);
@@ -68,6 +70,11 @@ namespace APPValper.ViewModels
         private async Task CRUD()
         {
             await Navigation.PushAsync(new Functions());
+        }
+
+        private async Task Options()
+        {
+            await Navigation.PushAsync(new Options());
         }
 
         private async Task ChangeUser()
