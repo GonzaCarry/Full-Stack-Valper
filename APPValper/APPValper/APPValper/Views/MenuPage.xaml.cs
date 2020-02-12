@@ -20,8 +20,8 @@ namespace APPValper.Views
 
             menuItems = new List<HomeMenuItem>
             {
-                new HomeMenuItem {Id = MenuItemType.Browse, Title="Browse" },
-                new HomeMenuItem {Id = MenuItemType.Login, Title="Login" },
+                new HomeMenuItem {Id = MenuItemType.Home, Title="Home" },
+                new HomeMenuItem {Id = MenuItemType.EditUser, Title="User configuration" },
                 new HomeMenuItem {Id = MenuItemType.Options, Title="Options" }
             };
 
