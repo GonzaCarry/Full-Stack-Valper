@@ -14,6 +14,7 @@ namespace APPValper.Services
         {
             if (AuthUser(Username, Password))
             {
+                Console.WriteLine("Has accedido");
                 //se accede
             }
         }
