@@ -6,8 +6,8 @@ namespace APPValper.Models
 {
     public enum MenuItemType
     {
-        Browse,
-        Login,
+        Home,
+        EditUser,
         Options
     }
     public class HomeMenuItem

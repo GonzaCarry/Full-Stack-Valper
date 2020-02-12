@@ -27,7 +27,7 @@ namespace APPValper.ViewModels
             CRUDCommand = new Command(async () => await CRUD(), () => !IsBusy);
             ChangeUserCommand = new Command(async () => await ChangeUser(), () => !IsBusy);
             ExitCommand = new Command(Exit);
-            Title = "Browse";
+            Title = "Home";
             Items = new ObservableCollection<Item>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
 

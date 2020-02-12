@@ -21,7 +21,7 @@ namespace APPValper.Views
 
             MasterBehavior = MasterBehavior.Popover;
 
-            MenuPages.Add((int)MenuItemType.Browse, (NavigationPage)Detail);
+            MenuPages.Add((int)MenuItemType.Home, (NavigationPage)Detail);
         }
 
         public async Task NavigateFromMenu(int id)
@@ -30,11 +30,11 @@ namespace APPValper.Views
             {
                 switch (id)
                 {
-                    case (int)MenuItemType.Browse:
+                    case (int)MenuItemType.Home:
                         MenuPages.Add(id, new NavigationPage(new ItemsPage()));
                         break;
-                    case (int)MenuItemType.Login:
-                        MenuPages.Add(id, new NavigationPage(new Login()));
+                    case (int)MenuItemType.EditUser:
+                        MenuPages.Add(id, new NavigationPage(new EditUser()));
                         break;
                     case (int)MenuItemType.Options:
                         MenuPages.Add(id, new NavigationPage(new Options()));
