@@ -9,49 +9,13 @@
              x:Name="BrowseItemsPage">
 
     <Grid>
-        <ListView x:Name="ItemsListView"
-                ItemsSource="{Binding Items}"
-                VerticalOptions="FillAndExpand"
-                HasUnevenRows="true"
-                RefreshCommand="{Binding LoadItemsCommand}"
-                IsPullToRefreshEnabled="true"
-                IsRefreshing="{Binding IsBusy, Mode=OneWay}"
-                CachingStrategy="RecycleElement"
-                ItemSelected="OnItemSelected">
-            <d:ListView.ItemsSource>
-                <x:Array Type="{x:Type x:String}">
-                    <x:String>First Item</x:String>
-                    <x:String>Second Item</x:String>
-                    <x:String>Third Item</x:String>
-                    <x:String>Fourth Item</x:String>
-                    <x:String>Fifth Item</x:String>
-                    <x:String>Sixth Item</x:String>
-                </x:Array>
-            </d:ListView.ItemsSource>
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <StackLayout Padding="10">
-                            <Label Text="{Binding Text}" 
-                                d:Text="{Binding .}"
-                                LineBreakMode="NoWrap" 
-                                Style="{DynamicResource ListItemTextStyle}" 
-                                FontSize="16" />
-                            <Label Text="{Binding Description}" 
-                                d:Text="Item descripton"
-                                LineBreakMode="NoWrap"
-                                Style="{DynamicResource ListItemDetailTextStyle}"
-                                FontSize="13" />
-                        </StackLayout>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+        
         <Image Source="fondo.jpg" Aspect="AspectFill" />
         <BoxView Color="#1E90FF" Opacity="0.8" />
 
         <Grid>
             <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
@@ -72,6 +36,36 @@
             <StackLayout Grid.Row="3" Padding="15,10">
                 <Button Command="{Binding ExitCommand}" Text="Exit" BackgroundColor="white" BorderRadius="20" TextColor="#1E90FF" />
             </StackLayout>
+
+            <Grid Grid.Row="4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <BoxView Color="Gray" Grid.Column="0" Grid.RowSpan="2" Margin="0,0,-3,0"/>
+                <BoxView Color="LightGray" Grid.Column="1" Grid.RowSpan="2" Margin="0,0,-3,0"/>
+                
+                <StackLayout Orientation="Vertical"  HorizontalOptions="Center" Padding="20" Margin="-20,-10,-20,-17" Grid.Column="0">
+                    <!--<StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding HomeCommand}"/>
+                    </StackLayout.GestureRecognizers>-->
+                    <Image x:Name="tab_home_icon_selected" IsVisible="True" Source="home.png" HeightRequest="100" WidthRequest="100" Margin="0,0,0,0" />
+                    <Label Margin="0" x:Name="tab_home" Text="HOME" FontSize="Micro"/>
+                </StackLayout>
+
+
+                <StackLayout Orientation="Vertical"  HorizontalOptions="Center" Padding="20" Margin="-20,-10,-20,-17" Grid.Column="1">
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding OptionsCommand}"/>
+                    </StackLayout.GestureRecognizers>
+                    <Image x:Name="tab_scan_icon_unselected"  Source="options.png" HeightRequest="100" WidthRequest="100" Margin="0,0,0,0" />
+                    <Label Text="SCAN" x:Name="tab_scan" FontSize="Micro" />
+
+                </StackLayout>
+
+            </Grid>
+
 
         </Grid>
     </Grid>

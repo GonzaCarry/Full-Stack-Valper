@@ -1,4 +1,5 @@
-﻿using System;
+﻿using APPValper.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,9 +13,12 @@ namespace APPValper.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Options : ContentPage
     {
+        OptionsViewModel Context;
         public Options()
         {
             InitializeComponent();
+            Context = new OptionsViewModel(Navigation);
+            BindingContext = Context;
         }
     }
 }
