@@ -15,6 +15,7 @@
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
 
@@ -32,12 +33,18 @@
                 </StackLayout>
 
                 <StackLayout Grid.Row="1" Padding="30,20">
-                    <Entry Placeholder="E-mail" PlaceholderColor="White"/>
-                    <Entry Placeholder="Full name" PlaceholderColor="White"/>
-                    <Entry Placeholder="Password" PlaceholderColor="White" IsPassword="True"/>
-                    <Entry Placeholder="Confirm password" PlaceholderColor="White" IsPassword="True"/>
-                    <Button Text="Register" BackgroundColor="White" BorderRadius="20" TextColor="#1E90FF" />
+                    <Entry Text="{Binding Email}"  Placeholder="E-mail" PlaceholderColor="White"/>
+                    <Entry Text="{Binding Username}" Placeholder="Full name" PlaceholderColor="White"/>
+                    <Entry Text="{Binding Password}" Placeholder="Password" PlaceholderColor="White" IsPassword="True"/>
+                    <Entry Text="{Binding Password2}" Placeholder="Confirm password" PlaceholderColor="White" IsPassword="True"/>
+                    <Button Command="{Binding RegisterCommand}" Text="Register" BackgroundColor="White" BorderRadius="20" TextColor="#1E90FF" />
+                </StackLayout>
 
+                <StackLayout Grid.Row="2" Padding="30,20" >
+                    <Label Text="Wanna be an administrator?" HorizontalOptions="EndAndExpand" FontAttributes="Bold" TextColor="White"/>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding AdminCommand}"/>
+                    </StackLayout.GestureRecognizers>
                 </StackLayout>
 
             </Grid>
