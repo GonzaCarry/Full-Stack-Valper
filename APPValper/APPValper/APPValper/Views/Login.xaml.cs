@@ -13,7 +13,7 @@ namespace APPValper.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Login : ContentPage
     {
-        LoginViewModel Context;
+        private LoginViewModel Context;
         public Login()
         {
             InitializeComponent();

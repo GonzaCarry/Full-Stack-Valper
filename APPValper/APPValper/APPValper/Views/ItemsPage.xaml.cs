@@ -14,7 +14,7 @@ namespace APPValper.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ItemsPage : ContentPage
     {
-        ItemsViewModel Context;
+        public ItemsViewModel Context { get; set; }
         public ItemsPage()
         {
             InitializeComponent();
