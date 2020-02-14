@@ -12,7 +12,7 @@ using Xamarin.Forms.Xaml;
 namespace APPValper.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Functions : ContentPage
+    public partial class Functions : TabbedPage
     {
         FunctionsViewModel Context = new FunctionsViewModel();
         public Functions()
@@ -20,7 +20,6 @@ namespace APPValper.Views
             Console.WriteLine("pasa");
             InitializeComponent();
 
-            NavigationPage.SetHasNavigationBar(this, false);
             BindingContext = Context;
             //LvFunctions.ItemSelected += LvFunctions_ItemSelected;
         }
