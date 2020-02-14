@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APPValper.Android", "APPVal
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APPValper.iOS", "APPValper\APPValper.iOS\APPValper.iOS.csproj", "{8E73C756-BDD5-47F4-9C4F-6B54D53F26FE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APPValper", "APPValper\APPValper\APPValper.csproj", "{4B4F4F5A-F52C-4BB2-99C0-5FB2BF342665}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APPValper", "APPValper\APPValper\APPValper.csproj", "{4B4F4F5A-F52C-4BB2-99C0-5FB2BF342665}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
