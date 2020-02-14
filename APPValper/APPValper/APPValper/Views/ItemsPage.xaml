@@ -1,21 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="APPValper.Views.ItemsPage"
              Title="{Binding Title}"
-             x:Name="BrowseItemsPage">
+             x:Name="BrowseItemsPage"
+             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+             android:TabbedPage.ToolbarPlacement="Bottom"
+             BarBackgroundColor="#2196F3"
+             BarTextColor="White"
+             android:TabbedPage.BarItemColor="#66FFFFFF"
+             android:TabbedPage.BarSelectedItemColor="White">
 
+    <ContentPage Title="Home" IconImageSource="home.png" >
     <Grid>
-        
+
         <Image Source="fondo.jpg" Aspect="AspectFill" />
         <BoxView Color="#1E90FF" Opacity="0.8" />
 
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
@@ -28,8 +34,8 @@
 
             <Frame Grid.Row="2" BackgroundColor="#1E90FF" BorderColor="WhiteSmoke" HasShadow="True" CornerRadius="10" Margin="10,10,10,10" Padding="0" VerticalOptions="Start">
                 <StackLayout Padding="45,30">
-                    <Label Text="Valper Solutions and Maintenance, S.L." HorizontalOptions="Center" FontAttributes="Bold" TextColor="White" FontSize="30" />
-                    <Label Text="Advice, supply, maintenance and support of computer systems. Custom software development. Software Marketing for the automotive sector. There is already a distribution and maintenance agreement with a multinational company. Development of integration applications for the aforementioned software to be distributed nationwide." HorizontalOptions="Center" TextColor="White" FontSize="Body" />
+                    <Label Text="Valper Solutions and Maintenance, S.L." HorizontalOptions="Center" FontAttributes="Bold" TextColor="White" FontSize="20" />
+                    <Label Text="Advice, supply, maintenance and support of computer systems. Custom software development. Software Marketing for the automotive sector. There is already a distribution and maintenance agreement with a multinational company. Development of integration applications for the aforementioned software to be distributed nationwide." HorizontalOptions="Center" TextColor="White" FontSize="15" />
                 </StackLayout>
             </Frame>
 
@@ -37,37 +43,68 @@
                 <Button Command="{Binding ExitCommand}" Text="Exit" BackgroundColor="white" BorderRadius="20" TextColor="#1E90FF" />
             </StackLayout>
 
-            <Grid Grid.Row="4">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-
-                <BoxView Color="Gray" Grid.Column="0" Grid.RowSpan="2" Margin="0,0,-3,0"/>
-                <BoxView Color="LightGray" Grid.Column="1" Grid.RowSpan="2" Margin="0,0,-3,0"/>
-                
-                <StackLayout Orientation="Vertical"  HorizontalOptions="Center" Padding="20" Margin="-20,-10,-20,-17" Grid.Column="0">
-                    <!--<StackLayout.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding HomeCommand}"/>
-                    </StackLayout.GestureRecognizers>-->
-                    <Image x:Name="tab_home_icon_selected" IsVisible="True" Source="home.png" HeightRequest="100" WidthRequest="100" Margin="0,0,0,0" />
-                    <Label Margin="0" x:Name="tab_home" Text="HOME" FontSize="Micro"/>
-                </StackLayout>
-
-
-                <StackLayout Orientation="Vertical"  HorizontalOptions="Center" Padding="20" Margin="-20,-10,-20,-17" Grid.Column="1">
-                    <StackLayout.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding OptionsCommand}"/>
-                    </StackLayout.GestureRecognizers>
-                    <Image x:Name="tab_scan_icon_unselected"  Source="options.png" HeightRequest="100" WidthRequest="100" Margin="0,0,0,0" />
-                    <Label Text="SCAN" x:Name="tab_scan" FontSize="Micro" />
-
-                </StackLayout>
-
-            </Grid>
-
 
         </Grid>
     </Grid>
-
 </ContentPage>
+
+    <ContentPage Title="Settings" IconImageSource="settings.png">
+
+        <Grid>
+
+            <Image Source="fondo.jpg" Aspect="AspectFill" />
+            <BoxView Color="#1E90FF" Opacity="0.8" />
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0">
+                    <StackLayout Padding="40,30,0,0">
+                        <Frame CornerRadius="100" 
+                    HeightRequest="50"
+                    WidthRequest="50"
+                    HorizontalOptions="Start"
+                    Padding="26"
+                    IsClippedToBounds="True">
+                            <Image Source="espanol.png" 
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                            Aspect="AspectFill"/>
+                        </Frame>
+
+                        <StackLayout Padding="35,10,0,0">
+                            <CheckBox Color="White" HorizontalOptions="Start" IsChecked="False"/>
+                        </StackLayout>
+                    </StackLayout>
+
+                    <StackLayout Padding="0,30,40,0" >
+                        <Frame CornerRadius="100" 
+                    HeightRequest="50"
+                    WidthRequest="50"
+                    HorizontalOptions="End"
+                    Padding="26"
+                    IsClippedToBounds="True">
+                            <Image Source="ingles.png" 
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center" />
+                        </Frame>
+
+                        <StackLayout Padding="0,10,30,0">
+                            <CheckBox Color="White" HorizontalOptions="End" IsChecked="true" />
+                        </StackLayout>
+                    </StackLayout>
+
+                    <StackLayout Grid.Row="1" Padding="30,50">
+                        <Entry Text="{Binding IpAddress}" Placeholder="IP Address" PlaceholderColor="White"/>
+                        <Button Command="{Binding CheckIp}" Text="Try this Ip" BackgroundColor="White" BorderRadius="20" TextColor="#1E90FF" />
+
+                    </StackLayout>
+                </Grid>
+            </Grid>
+        </Grid>
+    </ContentPage>
+
+</TabbedPage>

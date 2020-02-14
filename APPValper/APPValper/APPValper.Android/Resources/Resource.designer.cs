@@ -5836,22 +5836,25 @@ namespace APPValper.Droid
 			public const int save = 2131165315;
 			
 			// aapt resource value: 0x7F070084
-			public const int tooltip_frame_dark = 2131165316;
+			public const int settings = 2131165316;
 			
 			// aapt resource value: 0x7F070085
-			public const int tooltip_frame_light = 2131165317;
+			public const int tooltip_frame_dark = 2131165317;
 			
 			// aapt resource value: 0x7F070086
-			public const int userIcon = 2131165318;
+			public const int tooltip_frame_light = 2131165318;
 			
 			// aapt resource value: 0x7F070087
-			public const int valper = 2131165319;
+			public const int userIcon = 2131165319;
 			
 			// aapt resource value: 0x7F070088
-			public const int valperSplash = 2131165320;
+			public const int valper = 2131165320;
 			
 			// aapt resource value: 0x7F070089
-			public const int xamarin_logo = 2131165321;
+			public const int valperSplash = 2131165321;
+			
+			// aapt resource value: 0x7F07008A
+			public const int xamarin_logo = 2131165322;
 			
 			static Drawable()
 			{

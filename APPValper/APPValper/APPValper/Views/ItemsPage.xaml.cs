@@ -12,7 +12,7 @@ using Xamarin.Forms.Xaml;
 namespace APPValper.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ItemsPage : ContentPage
+    public partial class ItemsPage : TabbedPage
     {
         ItemsViewModel Context;
         public ItemsPage()
