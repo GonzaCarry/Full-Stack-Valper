@@ -32,7 +32,6 @@ namespace APPValper.Views
                 {
                     new HomeMenuItem {Id = MenuItemType.Home, Title="Home" },
                     new HomeMenuItem {Id = MenuItemType.EditUser, Title="User configuration" },
-                    new HomeMenuItem {Id = MenuItemType.Options, Title="Options" }
                 };
             //if (User.Users[0].Logged)
             //{
