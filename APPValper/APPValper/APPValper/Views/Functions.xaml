@@ -21,9 +21,9 @@
                 </Grid.RowDefinitions>
 
                 <StackLayout Grid.Row="1" Padding="30,20">
-                    <Entry Text="{Binding Brand}" Placeholder="Brand" PlaceholderColor="White"/>
-                    <Entry Text="{Binding Model}" Placeholder="Description" PlaceholderColor="White" />
-                    
+                    <Entry Text="{Binding BrandName}" Placeholder="BrandName" PlaceholderColor="White"/>
+                    <Entry Text="{Binding Headquarters}" Placeholder="Headquarters" PlaceholderColor="White" />
+                    <Entry Text="{Binding Founder}" Placeholder="Founder" PlaceholderColor="White" />
 
                 </StackLayout>
                 <Frame Grid.Row="2" HasShadow="True" CornerRadius="10" Margin="20,0,20,0" Padding="0" HeightRequest="120" VerticalOptions="Start" >
@@ -114,8 +114,9 @@
             </Grid.RowDefinitions>
 
             <StackLayout Grid.Row="1" Padding="30,20">
-                <Entry Text="{Binding Brand}" Placeholder="Brand" PlaceholderColor="White"/>
-                <Entry Text="{Binding Model}" Placeholder="Model" PlaceholderColor="White" />
+                    <Picker SelectedIndex="{Binding BrandPicker}" Title="BrandPicker"/>
+                    <Entry Text="{Binding ModelName}" Placeholder="Model name" PlaceholderColor="White"/>
+                    <Entry Text="{Binding Power}" Placeholder="Power" PlaceholderColor="White" />
                 <Entry Text="{Binding Color}" Placeholder="Color" PlaceholderColor="White" />
                 <Entry Text="{Binding DoorsNumber}" Placeholder="Door's Number" PlaceholderColor="White" />
                 
