@@ -18,33 +18,104 @@ namespace APPValper.Services
         {
             var config = DependencyService.Get<IConfig>();
             connection = new SQLiteConnection(Path.Combine(config.DirDB, "ValperDB.db3"), false);
-            connection.CreateTable<Function>();
+            //connection.CreateTable<Function>();
             connection.CreateTable<Connection>();
+            connection.CreateTable<Language>();
+            connection.CreateTable<Car>();
+            connection.CreateTable<Brand>();
         }
 
-        public void InsertFunction(Function function)
+        public void InsertCar(Car car)
         {
-            connection.Insert(function);
+            connection.Insert(car);
         }
 
-        public void ModifyFunction(Function function)
+        public void ModifyCar(Car car)
         {
-            connection.Update(function);
+            connection.Update(car);
         }
 
-        public void DeleteFunction(Function function)
+        public void DeleteCar(Car car)
         {
-            connection.Delete(function);
+            connection.Delete(car);
         }
 
-        public Function GetFunction(int IDFunction)
+        public Car GetCar(int IDCar)
         {
-            return connection.Table<Function>().FirstOrDefault(c => c.Id.Equals(IDFunction));
+            return connection.Table<Car>().FirstOrDefault(c => c.Id.Equals(IDCar));
         }
 
-        public List<Function> GetFunctions()
+        public List<Car> GetCars()
         {
-            return connection.Table<Function>().OrderBy(c => c.Server).ToList();
+            return connection.Table<Car>().OrderBy(c => c.Model).ToList();
+        }
+
+        public void InsertBrand(Brand brand)
+        {
+            connection.Insert(brand);
+        }
+
+        public void ModifyBrand(Brand brand)
+        {
+            connection.Update(brand);
+        }
+
+        public void DeleteBrand(Brand brand)
+        {
+            connection.Delete(brand);
+        }
+
+        public Brand GetBrand(int IDBrand)
+        {
+            return connection.Table<Brand>().FirstOrDefault(c => c.Id.Equals(IDBrand));
+        }
+
+        public List<Brand> GetBrands()
+        {
+            return connection.Table<Brand>().OrderBy(c => c.Name).ToList();
+        }
+
+        //public void InsertFunction(Function function)
+        //{
+        //    connection.Insert(function);
+        //}
+
+        //public void ModifyFunction(Function function)
+        //{
+        //    connection.Update(function);
+        //}
+
+        //public void DeleteFunction(Function function)
+        //{
+        //    connection.Delete(function);
+        //}
+
+        //public Function GetFunction(int IDFunction)
+        //{
+        //    return connection.Table<Function>().FirstOrDefault(c => c.Id.Equals(IDFunction));
+        //}
+
+        //public List<Function> GetFunctions()
+        //{
+        //    return connection.Table<Function>().OrderBy(c => c.Server).ToList();
+        //}
+
+        public Language GetLanguage()
+        {
+            if (connection.Table<Language>().ToList().Count > 0)
+            {
+                return connection.Table<Language>().FirstOrDefault(c => c.Id.Equals(0));
+            }
+            return new Language();
+        }
+
+        public void InsertLanguage(Language con)
+        {
+            if (connection.Table<Language>().ToList().Count > 0)
+            {
+                connection.Delete(connection.Table<Language>().FirstOrDefault(c => c.Id.Equals(0)));
+            }
+            connection.Insert(con);
         }
 
         public Connection GetConnection()

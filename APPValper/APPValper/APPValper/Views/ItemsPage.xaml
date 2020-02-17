@@ -62,7 +62,14 @@
                 </Grid.RowDefinitions>
 
                 <Grid Grid.Row="0">
-                    <StackLayout Padding="40,30,0,0">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackLayout Grid.Column="0" Padding="40,30,0,0">
                         <Frame CornerRadius="100" 
                     HeightRequest="50"
                     WidthRequest="50"
@@ -75,12 +82,12 @@
                             Aspect="AspectFill"/>
                         </Frame>
 
-                        <StackLayout Padding="35,10,0,0">
-                            <CheckBox Color="White" HorizontalOptions="Start" IsChecked="False"/>
-                        </StackLayout>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding SpanishCommand}"/>
+                        </StackLayout.GestureRecognizers>
                     </StackLayout>
 
-                    <StackLayout Padding="0,30,40,0" >
+                    <StackLayout Grid.Column="1" Padding="0,30,40,0" >
                         <Frame CornerRadius="100" 
                     HeightRequest="50"
                     WidthRequest="50"
@@ -92,15 +99,14 @@
                             VerticalOptions="Center" />
                         </Frame>
 
-                        <StackLayout Padding="0,10,30,0">
-                            <CheckBox Color="White" HorizontalOptions="End" IsChecked="true" />
-                        </StackLayout>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding EnglishCommand}"/>
+                        </StackLayout.GestureRecognizers>
                     </StackLayout>
 
                     <StackLayout Grid.Row="1" Padding="30,50">
-                        <Entry Text="{Binding IpAddress}" Placeholder="IP Address" PlaceholderColor="White"/>
-                        <Button Command="{Binding CheckIp}" Text="Try this Ip" BackgroundColor="White" BorderRadius="20" TextColor="#1E90FF" />
-
+                        <Entry Text="{Binding Url}" Placeholder="IP Address" PlaceholderColor="White"/>
+                        <Button Command="{Binding SaveCommand}" Text="Try this Ip" BackgroundColor="White" BorderRadius="20" TextColor="#1E90FF" />
                     </StackLayout>
                 </Grid>
             </Grid>
