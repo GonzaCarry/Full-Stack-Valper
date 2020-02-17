@@ -11,7 +11,9 @@ namespace APPValper.ViewModels
 {
     public class LoginViewModel : Connection
     {
+        OptionsService service2 = new OptionsService();
         LoginActiveDirectory service = new LoginActiveDirectory();
+        public Language Language { get; set; }
         public Command LoginCommand { get; set; }
         public Command RegisterCommand { get; set; }
         public string Email { get; set; }
@@ -20,12 +22,82 @@ namespace APPValper.ViewModels
         private int logging;
         private bool logged = false;
         private User userAux;
+
+        private string LanguageSelected;
+        public string EmailText { get; set; }
+        public string PasswordText { get; set; }
+        public string LoginText { get; set; }
+        public string NewAccountText { get; set; }
+
         public LoginViewModel(INavigation Nav)
         {
+            Update();
             Navigation = Nav;
             //LoginCommand = new Command(async () => await Login(), () => !IsBusy);
             LoginCommand = new Command(async () => await Login(), () => !IsBusy);
             RegisterCommand = new Command(async () => await Register(), () => !IsBusy);
+            CheckLanguage();
+        }
+
+
+        private void CheckLanguage()
+        {
+            if (!string.IsNullOrEmpty(LanguageSelected))
+            {
+                if (LanguageSelected.Equals("Spanish"))
+                {
+                    EmailText = "Correo electronico";
+                    PasswordText = "Contraseña";
+                    LoginText = "Conectarse";
+                    NewAccountText = "Crear nueva cuenta";
+                }
+                else
+                {
+                    EmailText = "E-mail";
+                    PasswordText = "Password";
+                    LoginText = "Login";
+                    NewAccountText = "Create new account";
+                }
+            }
+        }
+
+        private void Update()
+        {
+            Url = service2.ConsultLocal().Url;
+            LanguageSelected = service2.ConsultLanguage().Name;
+        }
+
+        private async Task English()
+        {
+            IsBusy = true;
+            Language = new Language()
+            {
+                Name = "English"
+            };
+            Console.WriteLine("holaasd");
+            service2.SaveLanguage(Language);
+            (Application.Current).MainPage = new NavigationPage(new ItemsPage());
+            await Application.Current.MainPage.DisplayAlert("Atención", "Se ha cambiado el idioma a inglés.", "Aceptar");
+            await Task.Delay(2000);
+            IsBusy = false;
+            //EnglishFrame.BackgroundColor = Color.Yellow;
+            //SpanishFrame.BackgroundColor = Color.White;
+        }
+
+        private async Task Spanish()
+        {
+            IsBusy = true;
+            Language = new Language()
+            {
+                Name = "Spanish"
+            };
+            service2.SaveLanguage(Language);
+            (Application.Current).MainPage = new NavigationPage(new ItemsPage());
+            await Application.Current.MainPage.DisplayAlert("Atención", "Se ha cambiado el idioma a español.", "Aceptar");
+            await Task.Delay(2000);
+            IsBusy = false;
+            //EnglishFrame.BackgroundColor = Color.White;
+            //SpanishFrame.BackgroundColor = Color.Yellow;
         }
 
         //private async Task Login()

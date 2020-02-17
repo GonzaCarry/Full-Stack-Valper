@@ -105,8 +105,8 @@
                     </StackLayout>
 
                     <StackLayout Grid.Row="1" Padding="30,50">
-                        <Entry Text="{Binding Url}" Placeholder="IP Address" PlaceholderColor="White"/>
-                        <Button Command="{Binding SaveCommand}" Text="Try this Ip" BackgroundColor="White" BorderRadius="20" TextColor="#1E90FF" />
+                        <Entry Text="{Binding Url}" Placeholder="{Binding UrlText}" PlaceholderColor="White"/>
+                        <Button Command="{Binding SaveCommand}" Text="{Binding TryIPButton}" BackgroundColor="White" BorderRadius="20" TextColor="#1E90FF" />
                     </StackLayout>
                 </Grid>
             </Grid>

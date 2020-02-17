@@ -42,6 +42,8 @@ namespace APPValper.ViewModels
         public string ButtonExitText { get; set; }
         public string TitleSettings { get; set; }
         public string TitleHome { get; set; }
+        public string UrlText { get; set; }
+        public string TryIPButton { get; set; }
 
 
 
@@ -69,27 +71,34 @@ namespace APPValper.ViewModels
 
         private void CheckLanguage()
         {
-            if (LanguageSelected.Equals("Spanish"))
+            if (!string.IsNullOrEmpty(LanguageSelected))
             {
-                Title = "Pantalla principal";
-                ButtonCRUDText = "CRUD";
-                ButtonLoginText = "Conectarse";
-                LabelTitle = "Valper Soluciones Y Mantenimientos, S.L.";
-                LabelDescription = "Asesoramiento, suministro, mantenimiento y soporte de sistemas informáticos. Desarrollo de Software a medida. Comercialización de Software para el sector de la automoción. Ya existe acuerdo de distribución y mantenimiento con empresa multinacional. Desarrollo de aplicaciones de integración para el software anteriormente mencionado para ser distribuidos a nivel nacional.";
-                ButtonExitText = "Salir";
-                TitleSettings = "Opciones";
-                TitleHome = "Página principal";
-            }
-            else
-            {
-                Title = "Home";
-                ButtonCRUDText = "CRUD";
-                ButtonLoginText = "Login";
-                LabelTitle = "Valper Solutions and Maintenance, S.L.";
-                LabelDescription = "Advice, supply, maintenance and support of computer systems. Custom software development. Software Marketing for the automotive sector. There is already a distribution and maintenance agreement with a multinational company. Development of integration applications for the aforementioned software to be distributed nationwide.";
-                ButtonExitText = "Exit";
-                TitleSettings = "Settings";
-                TitleHome = "Home";
+                if (LanguageSelected.Equals("Spanish"))
+                {
+                    Title = "Pantalla principal";
+                    ButtonCRUDText = "CRUD";
+                    ButtonLoginText = "Conectarse";
+                    LabelTitle = "Valper Soluciones Y Mantenimientos, S.L.";
+                    LabelDescription = "Asesoramiento, suministro, mantenimiento y soporte de sistemas informáticos. Desarrollo de Software a medida. Comercialización de Software para el sector de la automoción. Ya existe acuerdo de distribución y mantenimiento con empresa multinacional. Desarrollo de aplicaciones de integración para el software anteriormente mencionado para ser distribuidos a nivel nacional.";
+                    ButtonExitText = "Salir";
+                    TitleSettings = "Opciones";
+                    TitleHome = "Página principal";
+                    UrlText = "Direccion IP";
+                    TryIPButton = "Pruebe esta IP";
+    }
+                else
+                {
+                    Title = "Home";
+                    ButtonCRUDText = "CRUD";
+                    ButtonLoginText = "Login";
+                    LabelTitle = "Valper Solutions and Maintenance, S.L.";
+                    LabelDescription = "Advice, supply, maintenance and support of computer systems. Custom software development. Software Marketing for the automotive sector. There is already a distribution and maintenance agreement with a multinational company. Development of integration applications for the aforementioned software to be distributed nationwide.";
+                    ButtonExitText = "Exit";
+                    TitleSettings = "Settings";
+                    TitleHome = "Home";
+                    UrlText = "IP Address";
+                    TryIPButton = "Try this IP";
+                }
             }
         }
 
@@ -137,7 +146,7 @@ namespace APPValper.ViewModels
             };
             Console.WriteLine("holaasd");
             service.SaveLanguage(Language);
-            (Application.Current).MainPage = new NavigationPage(new ItemsPage());
+            (Application.Current).MainPage = new NavigationPage(new MainPage());
             await Application.Current.MainPage.DisplayAlert("Atención", "Se ha cambiado el idioma a inglés.", "Aceptar");
             await Task.Delay(2000);
             IsBusy = false;
@@ -153,7 +162,7 @@ namespace APPValper.ViewModels
                 Name = "Spanish"
             };
             service.SaveLanguage(Language);
-            (Application.Current).MainPage = new NavigationPage(new ItemsPage());
+            (Application.Current).MainPage = new NavigationPage(new MainPage());
             await Application.Current.MainPage.DisplayAlert("Atención", "Se ha cambiado el idioma a español.", "Aceptar");
             await Task.Delay(2000);
             IsBusy = false;
