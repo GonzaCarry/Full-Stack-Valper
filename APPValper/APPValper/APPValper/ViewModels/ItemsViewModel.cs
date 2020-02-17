@@ -32,6 +32,18 @@ namespace APPValper.ViewModels
 
         public Connection Con { get; set; }
         public string Url { get; set; }
+        public Language Language { get; set; }
+        private string LanguageSelected;
+
+        public string ButtonCRUDText { get; set; }
+        public string ButtonLoginText { get; set; }
+        public string LabelTitle { get; set; }
+        public string LabelDescription { get; set; }
+        public string ButtonExitText { get; set; }
+        public string TitleSettings { get; set; }
+        public string TitleHome { get; set; }
+
+
 
         public ItemsViewModel(INavigation Nav)
         {
@@ -44,21 +56,47 @@ namespace APPValper.ViewModels
             CRUDCommand = new Command(async () => await CRUD(), () => !IsBusy);
             ChangeUserCommand = new Command(async () => await ChangeUser(), () => !IsBusy);
             ExitCommand = new Command(Exit);
-            Title = "Home";
             Items = new ObservableCollection<Item>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
-
             MessagingCenter.Subscribe<NewItemPage, Item>(this, "AddItem", async (obj, item) =>
             {
                 var newItem = item as Item;
                 Items.Add(newItem);
                 await DataStore.AddItemAsync(newItem);
             });
+            CheckLanguage();
+        }
+
+        private void CheckLanguage()
+        {
+            if (LanguageSelected.Equals("Spanish"))
+            {
+                Title = "Pantalla principal";
+                ButtonCRUDText = "CRUD";
+                ButtonLoginText = "Conectarse";
+                LabelTitle = "Valper Soluciones Y Mantenimientos, S.L.";
+                LabelDescription = "Asesoramiento, suministro, mantenimiento y soporte de sistemas informáticos. Desarrollo de Software a medida. Comercialización de Software para el sector de la automoción. Ya existe acuerdo de distribución y mantenimiento con empresa multinacional. Desarrollo de aplicaciones de integración para el software anteriormente mencionado para ser distribuidos a nivel nacional.";
+                ButtonExitText = "Salir";
+                TitleSettings = "Opciones";
+                TitleHome = "Página principal";
+            }
+            else
+            {
+                Title = "Home";
+                ButtonCRUDText = "CRUD";
+                ButtonLoginText = "Login";
+                LabelTitle = "Valper Solutions and Maintenance, S.L.";
+                LabelDescription = "Advice, supply, maintenance and support of computer systems. Custom software development. Software Marketing for the automotive sector. There is already a distribution and maintenance agreement with a multinational company. Development of integration applications for the aforementioned software to be distributed nationwide.";
+                ButtonExitText = "Exit";
+                TitleSettings = "Settings";
+                TitleHome = "Home";
+            }
         }
 
         private void Update()
         {
             Url = service.ConsultLocal().Url;
+            LanguageSelected = service.ConsultLanguage().Name;
         }
 
         private async Task Save()
@@ -92,18 +130,35 @@ namespace APPValper.ViewModels
 
         private async Task English()
         {
+            IsBusy = true;
+            Language = new Language()
+            {
+                Name = "English"
+            };
+            Console.WriteLine("holaasd");
+            service.SaveLanguage(Language);
+            (Application.Current).MainPage = new NavigationPage(new ItemsPage());
             await Application.Current.MainPage.DisplayAlert("Atención", "Se ha cambiado el idioma a inglés.", "Aceptar");
+            await Task.Delay(2000);
+            IsBusy = false;
             //EnglishFrame.BackgroundColor = Color.Yellow;
             //SpanishFrame.BackgroundColor = Color.White;
-            //await Navigation.PushAsync(new ItemsPage());
         }
 
         private async Task Spanish()
         {
+            IsBusy = true;
+            Language = new Language()
+            {
+                Name = "Spanish"
+            };
+            service.SaveLanguage(Language);
+            (Application.Current).MainPage = new NavigationPage(new ItemsPage());
             await Application.Current.MainPage.DisplayAlert("Atención", "Se ha cambiado el idioma a español.", "Aceptar");
+            await Task.Delay(2000);
+            IsBusy = false;
             //EnglishFrame.BackgroundColor = Color.White;
             //SpanishFrame.BackgroundColor = Color.Yellow;
-            //await Navigation.PushAsync(new ItemsPage());
         }
 
         async Task ExecuteLoadItemsCommand()
@@ -142,7 +197,7 @@ namespace APPValper.ViewModels
             {
                 await Application.Current.MainPage.DisplayAlert("Error", "Debe estar conectado para acceder", "Aceptar");
             }
-            
+
         }
 
         private async Task Options()

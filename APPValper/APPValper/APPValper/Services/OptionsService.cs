@@ -11,6 +11,7 @@ namespace APPValper.Services
     class OptionsService
     {
         private Connection connection { get; set; }
+        private Language language { get; set; }
 
         public OptionsService()
         {
@@ -27,6 +28,15 @@ namespace APPValper.Services
                 connection = data.GetConnection();
             }
             return connection;
+        }
+
+        public Language ConsultLanguage()
+        {
+            using (var data = new DataAccess())
+            {
+                language = data.GetLanguage();
+            }
+            return language;
         }
 
         public async System.Threading.Tasks.Task<bool> SaveLocalAsync(Connection con)
@@ -56,6 +66,14 @@ namespace APPValper.Services
             catch (HttpRequestException)
             {
                 return false;
+            }
+        }
+
+        public void SaveLanguage(Language language)
+        {
+            using (var data = new DataAccess())
+            {
+                data.InsertLanguage(language);
             }
         }
     }

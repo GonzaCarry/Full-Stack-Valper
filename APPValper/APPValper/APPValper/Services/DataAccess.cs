@@ -109,13 +109,13 @@ namespace APPValper.Services
             return new Language();
         }
 
-        public void InsertLanguage(Language con)
+        public void InsertLanguage(Language language)
         {
             if (connection.Table<Language>().ToList().Count > 0)
             {
                 connection.Delete(connection.Table<Language>().FirstOrDefault(c => c.Id.Equals(0)));
             }
-            connection.Insert(con);
+            connection.Insert(language);
         }
 
         public Connection GetConnection()

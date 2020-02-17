@@ -14,41 +14,41 @@
              android:TabbedPage.BarItemColor="#66FFFFFF"
              android:TabbedPage.BarSelectedItemColor="White">
 
-    <ContentPage Title="Home" IconImageSource="home.png" >
-    <Grid>
-
-        <Image Source="fondo.jpg" Aspect="AspectFill" />
-        <BoxView Color="#1E90FF" Opacity="0.8" />
-
+    <ContentPage Title="{Binding TitleHome}" IconImageSource="home.png" >
         <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
 
-            <StackLayout Grid.Row="1" Padding="15,20">
-                <Button Command="{Binding CRUDCommand}" Text="Functions" BackgroundColor="white" BorderRadius="20" TextColor="#1E90FF" />
-                <Button Command="{Binding ChangeUserCommand}" Text="Change User" BackgroundColor="white" BorderRadius="20" TextColor="#1E90FF" />
-            </StackLayout>
+            <Image Source="fondo.jpg" Aspect="AspectFill" />
+            <BoxView Color="#1E90FF" Opacity="0.8" />
 
-            <Frame Grid.Row="2" BackgroundColor="#1E90FF" BorderColor="WhiteSmoke" HasShadow="True" CornerRadius="10" Margin="10,10,10,10" Padding="0" VerticalOptions="Start">
-                <StackLayout Padding="45,30">
-                    <Label Text="Valper Solutions and Maintenance, S.L." HorizontalOptions="Center" FontAttributes="Bold" TextColor="White" FontSize="20" />
-                    <Label Text="Advice, supply, maintenance and support of computer systems. Custom software development. Software Marketing for the automotive sector. There is already a distribution and maintenance agreement with a multinational company. Development of integration applications for the aforementioned software to be distributed nationwide." HorizontalOptions="Center" TextColor="White" FontSize="15" />
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <StackLayout Grid.Row="1" Padding="15,20">
+                    <Button Command="{Binding CRUDCommand}" Text="{Binding ButtonCRUDText}" BackgroundColor="white" BorderRadius="20" TextColor="#1E90FF" />
+                    <Button Command="{Binding ChangeUserCommand}" Text="{Binding ButtonLoginText}" BackgroundColor="white" BorderRadius="20" TextColor="#1E90FF" />
                 </StackLayout>
-            </Frame>
 
-            <StackLayout Grid.Row="3" Padding="15,10">
-                <Button Command="{Binding ExitCommand}" Text="Exit" BackgroundColor="white" BorderRadius="20" TextColor="#1E90FF" />
-            </StackLayout>
+                <Frame Grid.Row="2" BackgroundColor="#1E90FF" BorderColor="WhiteSmoke" HasShadow="True" CornerRadius="10" Margin="10,10,10,10" Padding="0" VerticalOptions="Start">
+                    <StackLayout Padding="45,30">
+                        <Label Text="{Binding LabelTitle}" HorizontalOptions="Center" FontAttributes="Bold" TextColor="White" FontSize="20" />
+                        <Label Text="{Binding LabelDescription}" HorizontalOptions="Center" TextColor="White" FontSize="15" />
+                    </StackLayout>
+                </Frame>
+
+                <StackLayout Grid.Row="3" Padding="15,10">
+                    <Button Command="{Binding ExitCommand}" Text="{Binding ButtonExitText}" BackgroundColor="white" BorderRadius="20" TextColor="#1E90FF" />
+                </StackLayout>
 
 
+            </Grid>
         </Grid>
-    </Grid>
-</ContentPage>
+    </ContentPage>
 
-    <ContentPage Title="Settings" IconImageSource="settings.png">
+    <ContentPage Title="{Binding TitleSettings}" IconImageSource="settings.png">
 
         <Grid>
 
