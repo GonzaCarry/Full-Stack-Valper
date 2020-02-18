@@ -73,18 +73,11 @@
                     <StackLayout Grid.Row="1" Padding="30,50">
                         <StackLayout Orientation="Horizontal" >
                             <Entry Text="{Binding Url}" Placeholder="{Binding UrlText}" PlaceholderColor="White" HorizontalOptions="Start" />
-                            <Frame CornerRadius="100" 
-                                   HeightRequest="25"
-                                   WidthRequest="25"
-                                   HorizontalOptions="End"
-                                   Padding="26"
-                                   IsClippedToBounds="True">
-                                        <Image Source="check.png" 
-                                               HorizontalOptions="Center"
-                                               VerticalOptions="Center" />
-                            </Frame>
-
+                            <Image Source="check.png" HeightRequest="50" HorizontalOptions="Center"/>
                         </StackLayout>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding IPCommand}"/>
+                        </StackLayout.GestureRecognizers>
                     </StackLayout>
                 </Grid>
             </Grid>

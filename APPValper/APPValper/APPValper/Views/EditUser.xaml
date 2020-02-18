@@ -5,7 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="APPValper.Views.EditUser"
-             Title="User configuration">
+             Title="{Binding EditUserTittle}">
     <ContentPage.Content>
 
         <Grid>
@@ -30,19 +30,19 @@
                             HorizontalOptions="Center"
                             VerticalOptions="Center" />
                     </Frame>
-                    <Button Text="Change Image" BackgroundColor="White" BorderRadius="20" TextColor="#1E90FF" HorizontalOptions="Center"/>
+                    <Button Text="{Binding ChangeImageButtonText}" BackgroundColor="White" BorderRadius="20" TextColor="#1E90FF" HorizontalOptions="Center"/>
                 </StackLayout>
 
                 <StackLayout Grid.Row="1" Padding="30,5">
                     <StackLayout Orientation="Horizontal" >
-                        <Entry Placeholder="Actual name" PlaceholderColor="White" HorizontalOptions="Start" />
-                        <Button Text="Change name" BackgroundColor="White" BorderRadius="20" TextColor="#1E90FF" HorizontalOptions="EndAndExpand"/>
+                        <Entry Placeholder="{Binding ActualNameText}" PlaceholderColor="White" HorizontalOptions="Start" />
+                        <Button Text="{Binding ChangeNameButtonText}" BackgroundColor="White" BorderRadius="20" TextColor="#1E90FF" HorizontalOptions="EndAndExpand"/>
 
                     </StackLayout>
-                    <Entry Placeholder="Actual password" PlaceholderColor="White"/>
-                    <Entry Placeholder="New Password" PlaceholderColor="White" IsPassword="True"/>
-                    <Entry Placeholder="Confirm password" PlaceholderColor="White" IsPassword="True"/>
-                    <Button Text="Change Password" BackgroundColor="White" BorderRadius="20" TextColor="#1E90FF" />
+                    <Entry Placeholder="{Binding ActualPasswordText}" PlaceholderColor="White"/>
+                    <Entry Placeholder="{Binding NewPasswordText}" PlaceholderColor="White" IsPassword="True"/>
+                    <Entry Placeholder="{Binding ConfirmPasswordText}" PlaceholderColor="White" IsPassword="True"/>
+                    <Button Text="{Binding ChangePasswordButtonText}" BackgroundColor="White" BorderRadius="20" TextColor="#1E90FF" />
 
                 </StackLayout>
 
