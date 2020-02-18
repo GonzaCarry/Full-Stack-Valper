@@ -20,15 +20,15 @@ namespace APPValper.Models
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
-        private string idBrand;
+        private string idCar;
 
         [PrimaryKey]
-        public string IdBrand
+        public string IdCar
         {
-            get { return idBrand; }
+            get { return idCar; }
             set
             {
-                idBrand = value;
+                idCar = value;
                 OnPropertyChanged();
             }
         }
@@ -65,6 +65,66 @@ namespace APPValper.Models
             set
             {
                 founder = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string brandID;
+
+        public string BrandID
+        {
+            get { return brandID; }
+            set
+            {
+                brandID = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string model;
+
+        public string Model
+        {
+            get { return model; }
+            set
+            {
+                model = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string power;
+
+        public string Power
+        {
+            get { return power; }
+            set
+            {
+                power = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string color;
+
+        public string Color
+        {
+            get { return color; }
+            set
+            {
+                color = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private int ndoor;
+
+        public int Ndoor
+        {
+            get { return ndoor; }
+            set
+            {
+                ndoor = value;
                 OnPropertyChanged();
             }
         }

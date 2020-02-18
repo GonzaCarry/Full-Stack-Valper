@@ -112,13 +112,13 @@
                     </StackLayout>
 
                     <StackLayout Grid.Row="1" Padding="30,50">
+                        <Entry Text="{Binding Url}" Placeholder="{Binding UrlText}" PlaceholderColor="White" HorizontalOptions="Start" />
                         <StackLayout Orientation="Horizontal" >
-                            <Entry Text="{Binding Url}" Placeholder="{Binding UrlText}" PlaceholderColor="White" HorizontalOptions="Start" />
                             <Image Source="check.png" HeightRequest="50" HorizontalOptions="End"/>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding SaveCommand}"/>
+                            </StackLayout.GestureRecognizers>
                         </StackLayout>
-                        <StackLayout.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding SaveCommand}"/>
-                        </StackLayout.GestureRecognizers>
                     </StackLayout>
                 </Grid>
             </Grid>

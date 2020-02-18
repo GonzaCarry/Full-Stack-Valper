@@ -13,24 +13,34 @@ using System.Configuration;
 
 namespace APPValper.Resources
 {
-    public class CarsService
+    public class FunctionsService
     {
         public ObservableCollection<Car> Cars { get; set; }
+        public ObservableCollection<Brand> Brands { get; set; }
         private string apiUrl;
+        private string apiUrl3;
 
-        public CarsService()
+        public FunctionsService()
         {
             using (var data = new DataAccess())
             {
-                apiUrl = data.GetConnection().Url + "/api/Cars";
+                apiUrl = data.GetConnection().Url + "/api/Brands";
+            }
+            using (var data = new DataAccess())
+            {
+                apiUrl3 = data.GetConnection().Url + "/api/Cars";
             }
             if (Cars == null)
             {
                 Cars = new ObservableCollection<Car>();
             }
+            if (Brands == null)
+            {
+                Brands = new ObservableCollection<Brand>();
+            }
         }
 
-        public async System.Threading.Tasks.Task<ObservableCollection<Car>> Consult()
+        public async System.Threading.Tasks.Task<ObservableCollection<Brand>> ConsultBrand()
         {
             try
             {
@@ -39,6 +49,127 @@ namespace APPValper.Resources
                 {
                     client = CreateClient();
                     HttpResponseMessage response = await client.GetAsync(apiUrl);
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var result = await response.Content.ReadAsStringAsync();
+                        Brands = JsonConvert.DeserializeObject<ObservableCollection<Brand>>(result);
+                    }
+                }
+                return Brands;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public ObservableCollection<Brand> ConsultLocalBrand()
+        {
+            using (var data = new DataAccess())
+            {
+                var list = data.GetBrands();
+                foreach (var item in list)
+                    Brands.Add(item);
+            }
+            return Brands;
+        }
+
+        public async void SaveBrand(Brand model)
+        {
+            try
+            {
+                HttpClient client;
+                using (client = new HttpClient())
+                {
+                    client = CreateClient();
+                    var send = Newtonsoft.Json.JsonConvert.SerializeObject(model,
+                            Newtonsoft.Json.Formatting.None,
+                            new JsonSerializerSettings
+                            {
+                                NullValueHandling = NullValueHandling.Ignore
+                            });
+                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, "");
+                    request.Content = new StringContent(send, Encoding.UTF8, "application/json");//CONTENT-TYPE header
+                    HttpResponseMessage response = await client.SendAsync(request);
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public void SaveLocalBrand(Brand model)
+        {
+            using (var data = new DataAccess())
+            {
+                data.InsertBrand(model);
+            }
+        }
+
+        public async void ModifyBrand(Brand model)
+        {
+            try
+            {
+                HttpClient client;
+                using (client = new HttpClient())
+                {
+                    client = CreateClient();
+                    var json = JsonConvert.SerializeObject(model);
+                    var content = new StringContent(json, Encoding.UTF8, "application/json");
+                    Uri apiUrl2 = new Uri(string.Format(apiUrl + "/{0}", model.IdBrand));
+                    HttpResponseMessage response = await client.PutAsync(apiUrl2, content);
+                    Console.WriteLine(response.IsSuccessStatusCode);
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public void ModifyLocalBrand(Brand model)
+        {
+            using (var data = new DataAccess())
+            {
+                data.ModifyBrand(model);
+            }
+        }
+
+        public async void DeleteBrand(string idBrand)
+        {
+            try
+            {
+                HttpClient client;
+                using (client = new HttpClient())
+                {
+                    client = CreateClient();
+                    HttpResponseMessage response = await client.DeleteAsync(apiUrl + "/" + idBrand);
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public void DeleteLocalBrand(Brand model)
+        {
+            using (var data = new DataAccess())
+            {
+                data.DeleteBrand(model);
+            }
+        }
+
+        public async System.Threading.Tasks.Task<ObservableCollection<Car>> ConsultCar()
+        {
+            try
+            {
+                HttpClient client;
+                using (client = new HttpClient())
+                {
+                    client = CreateClient();
+                    HttpResponseMessage response = await client.GetAsync(apiUrl3);
                     if (response.IsSuccessStatusCode)
                     {
                         var result = await response.Content.ReadAsStringAsync();
@@ -64,7 +195,7 @@ namespace APPValper.Resources
             return Cars;
         }
 
-        public async void Save(Car model)
+        public async void SaveCar(Car model)
         {
             try
             {
@@ -97,7 +228,7 @@ namespace APPValper.Resources
             }
         }
 
-        public async void Modify(Car model)
+        public async void ModifyCar(Car model)
         {
             try
             {
@@ -107,7 +238,7 @@ namespace APPValper.Resources
                     client = CreateClient();
                     var json = JsonConvert.SerializeObject(model);
                     var content = new StringContent(json, Encoding.UTF8, "application/json");
-                    Uri apiUrl2 = new Uri(string.Format(apiUrl + "/{0}", model.Id));
+                    Uri apiUrl2 = new Uri(string.Format(apiUrl3 + "/{0}", model.CarID));
                     HttpResponseMessage response = await client.PutAsync(apiUrl2, content);
                     Console.WriteLine(response.IsSuccessStatusCode);
                 }
@@ -126,7 +257,7 @@ namespace APPValper.Resources
             }
         }
 
-        public async void Delete(string idCar)
+        public async void DeleteCar(string idCar)
         {
             try
             {
@@ -134,7 +265,7 @@ namespace APPValper.Resources
                 using (client = new HttpClient())
                 {
                     client = CreateClient();
-                    HttpResponseMessage response = await client.DeleteAsync(apiUrl + "/" + idCar);
+                    HttpResponseMessage response = await client.DeleteAsync(apiUrl3 + "/" + idCar);
                 }
             }
             catch (Exception)

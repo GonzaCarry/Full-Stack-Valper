@@ -20,27 +20,15 @@ namespace APPValper.Models
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
-        private string id;
+        private string carID;
 
         [PrimaryKey]
-        public string Id
+        public string CarID
         {
-            get { return id; }
+            get { return carID; }
             set
             {
-                id = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private string brandID;
-
-        public string BrandID
-        {
-            get { return brandID; }
-            set
-            {
-                brandID = value;
+                carID = value;
                 OnPropertyChanged();
             }
         }

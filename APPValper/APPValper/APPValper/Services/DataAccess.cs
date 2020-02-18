@@ -21,7 +21,7 @@ namespace APPValper.Services
             //connection.CreateTable<Function>();
             connection.CreateTable<Connection>();
             connection.CreateTable<Language>();
-            connection.CreateTable<Car>();
+            //connection.CreateTable<Car>();
             connection.CreateTable<Brand>();
         }
 
@@ -42,7 +42,7 @@ namespace APPValper.Services
 
         public Car GetCar(int IDCar)
         {
-            return connection.Table<Car>().FirstOrDefault(c => c.Id.Equals(IDCar));
+            return connection.Table<Car>().FirstOrDefault(c => c.CarID.Equals(IDCar));
         }
 
         public List<Car> GetCars()
@@ -67,7 +67,7 @@ namespace APPValper.Services
 
         public Brand GetBrand(int IDBrand)
         {
-            return connection.Table<Brand>().FirstOrDefault(c => c.Id.Equals(IDBrand));
+            return connection.Table<Brand>().FirstOrDefault(c => c.IdBrand.Equals(IDBrand));
         }
 
         public List<Brand> GetBrands()

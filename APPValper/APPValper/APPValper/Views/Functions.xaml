@@ -21,7 +21,7 @@
                 </Grid.RowDefinitions>
 
                 <StackLayout Grid.Row="1" Padding="30,20">
-                    <Entry Text="{Binding BrandName}" Placeholder="{Binding BrandNameText}" PlaceholderColor="White"/>
+                    <Entry Text="{Binding Name}" Placeholder="{Binding BrandNameText}" PlaceholderColor="White"/>
                     <Entry Text="{Binding Headquarters}" Placeholder="{Binding HeadquartersText}" PlaceholderColor="White" />
                     <Entry Text="{Binding Founder}" Placeholder="{Binding FounderText}" PlaceholderColor="White" />
 
@@ -40,7 +40,7 @@
                                 <Label Text="{Binding SaveText}" TextColor="Black" FontSize="14" FontAttributes="Bold" HorizontalOptions="Center"/>
                             </StackLayout>
                             <StackLayout.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding SaveCarCommand}"/>
+                                <TapGestureRecognizer Command="{Binding SaveBrandCommand}"/>
                             </StackLayout.GestureRecognizers>
                         </StackLayout>
                         <StackLayout Grid.Column="1" Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand">
@@ -49,7 +49,7 @@
                                 <Label Text="{Binding ModifyText}" TextColor="Black" FontSize="14" FontAttributes="Bold" HorizontalOptions="Center"/>
                             </StackLayout>
                             <StackLayout.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding ModifyCarCommand}"/>
+                                <TapGestureRecognizer Command="{Binding ModifyBrandCommand}"/>
                             </StackLayout.GestureRecognizers>
                         </StackLayout>
                         <StackLayout Grid.Column="2" Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand">
@@ -58,7 +58,7 @@
                                 <Label Text="{Binding DeleteText}" TextColor="Black" FontSize="14" FontAttributes="Bold" HorizontalOptions="Center"/>
                             </StackLayout>
                             <StackLayout.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding DeleteCarCommand}"/>
+                                <TapGestureRecognizer Command="{Binding DeleteBrandCommand}"/>
                             </StackLayout.GestureRecognizers>
                         </StackLayout>
                         <StackLayout Grid.Column="3" Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand">
@@ -67,7 +67,7 @@
                                 <Label Text="{Binding ClearText}" TextColor="Black" FontSize="14" FontAttributes="Bold" HorizontalOptions="Center"/>
                             </StackLayout>
                             <StackLayout.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding CleanCarCommand}"/>
+                                <TapGestureRecognizer Command="{Binding CleanBrandCommand}"/>
                             </StackLayout.GestureRecognizers>
                         </StackLayout>
                     </Grid>
@@ -136,7 +136,7 @@
                                 <Label Text="{Binding SaveText}" TextColor="Black" FontSize="14" FontAttributes="Bold" HorizontalOptions="Center"/>
                             </StackLayout>
                             <StackLayout.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding SaveBrandCommand}"/>
+                                <TapGestureRecognizer Command="{Binding SaveCarCommand}"/>
                             </StackLayout.GestureRecognizers>
                         </StackLayout>
                         <StackLayout Grid.Column="1" Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand">
@@ -145,7 +145,7 @@
                                 <Label Text="{Binding ModifyText}" TextColor="Black" FontSize="14" FontAttributes="Bold" HorizontalOptions="Center"/>
                             </StackLayout>
                             <StackLayout.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding ModifyBrandCommand}"/>
+                                <TapGestureRecognizer Command="{Binding ModifyCarCommand}"/>
                             </StackLayout.GestureRecognizers>
                         </StackLayout>
                         <StackLayout Grid.Column="2" Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand">
@@ -154,7 +154,7 @@
                                 <Label Text="{Binding DeleteText}" TextColor="Black" FontSize="14" FontAttributes="Bold" HorizontalOptions="Center"/>
                             </StackLayout>
                             <StackLayout.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding DeleteBrandCommand}"/>
+                                <TapGestureRecognizer Command="{Binding DeleteCarCommand}"/>
                             </StackLayout.GestureRecognizers>
                         </StackLayout>
                         <StackLayout Grid.Column="3" Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand">
@@ -163,7 +163,7 @@
                                 <Label Text="{Binding ClearText}" TextColor="Black" FontSize="14" FontAttributes="Bold" HorizontalOptions="Center"/>
                             </StackLayout>
                             <StackLayout.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding CleanBrandCommand}"/>
+                                <TapGestureRecognizer Command="{Binding CleanCarCommand}"/>
                             </StackLayout.GestureRecognizers>
                         </StackLayout>
                     </Grid>

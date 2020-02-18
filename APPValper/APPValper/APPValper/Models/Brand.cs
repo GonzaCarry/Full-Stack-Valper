@@ -11,7 +11,7 @@ using SQLite;
 
 namespace APPValper.Models
 {
-    public partial class Brand : INotifyPropertyChanged
+    public class Brand : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -21,7 +21,7 @@ namespace APPValper.Models
         }
 
         private string id;
-
+        [PrimaryKey]
         public string Id
         {
             get { return id; }
@@ -64,66 +64,6 @@ namespace APPValper.Models
             set
             {
                 founder = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private string idCar;
-
-        public string IdCar
-        {
-            get { return idCar; }
-            set
-            {
-                id = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private string model;
-
-        public string Model
-        {
-            get { return model; }
-            set
-            {
-                model = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private string power;
-
-        public string Power
-        {
-            get { return power; }
-            set
-            {
-                power = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private string color;
-
-        public string Color
-        {
-            get { return color; }
-            set
-            {
-                color = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private int ndoor;
-
-        public int Ndoor
-        {
-            get { return ndoor; }
-            set
-            {
-                ndoor = value;
                 OnPropertyChanged();
             }
         }
