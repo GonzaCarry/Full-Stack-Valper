@@ -146,7 +146,7 @@ namespace APPValper.ViewModels
             };
             Console.WriteLine("holaasd");
             service.SaveLanguage(Language);
-            (Application.Current).MainPage = new NavigationPage(new MainPage());
+            (Application.Current).MainPage = new MainPage();
             await Application.Current.MainPage.DisplayAlert("Atención", "Se ha cambiado el idioma a inglés.", "Aceptar");
             await Task.Delay(2000);
             IsBusy = false;
@@ -162,7 +162,7 @@ namespace APPValper.ViewModels
                 Name = "Spanish"
             };
             service.SaveLanguage(Language);
-            (Application.Current).MainPage = new NavigationPage(new MainPage());
+            (Application.Current).MainPage = new MainPage();
             await Application.Current.MainPage.DisplayAlert("Atención", "Se ha cambiado el idioma a español.", "Aceptar");
             await Task.Delay(2000);
             IsBusy = false;
