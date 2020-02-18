@@ -1,4 +1,5 @@
 ﻿using System;
+using APPValper.ViewModels;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,9 +13,11 @@ namespace APPValper.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class EditUser : ContentPage
     {
+        EditUserViewModel Context = new EditUserViewModel();
         public EditUser()
         {
             InitializeComponent();
+            BindingContext = Context;
         }
     }
 }
