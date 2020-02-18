@@ -32,12 +32,12 @@
                 </StackLayout>
 
                 <StackLayout Grid.Row="1" Padding="30,20">
-                    <Entry Text="{Binding Email}" Placeholder="E-mail" PlaceholderColor="White"/>
-                    <Entry Text="{Binding Password}" Placeholder="Password" PlaceholderColor="White" IsPassword="True"/>
-                    <Button Command="{Binding LoginCommand}" Text="Login" BackgroundColor="White" BorderRadius="20" TextColor="#1E90FF" />
+                    <Entry Text="{Binding Email}" Placeholder="{Binding EmailText}" PlaceholderColor="White"/>
+                    <Entry Text="{Binding Password}" Placeholder="{Binding PasswordText}" PlaceholderColor="White" IsPassword="True"/>
+                    <Button Command="{Binding LoginCommand}" Text="{Binding LoginText}" BackgroundColor="White" BorderRadius="20" TextColor="#1E90FF" />
 
                     <StackLayout Orientation="Horizontal" Padding="30,20" >
-                        <Label Text="Create new account" HorizontalOptions="EndAndExpand" FontAttributes="Bold" TextColor="White"/>
+                        <Label Text="{Binding NewAccountText}" HorizontalOptions="EndAndExpand" FontAttributes="Bold" TextColor="White"/>
                         <StackLayout.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding RegisterCommand}"/>
                         </StackLayout.GestureRecognizers>

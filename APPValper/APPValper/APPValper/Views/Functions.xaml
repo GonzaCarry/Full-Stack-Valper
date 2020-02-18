@@ -6,7 +6,7 @@
              mc:Ignorable="d"
              x:Class="APPValper.Views.Functions">
 
-    <ContentPage Title="Brand">
+    <ContentPage Title="{Binding BrandTitle}">
 
         <Grid>
 
@@ -21,9 +21,9 @@
                 </Grid.RowDefinitions>
 
                 <StackLayout Grid.Row="1" Padding="30,20">
-                    <Entry Text="{Binding BrandName}" Placeholder="BrandName" PlaceholderColor="White"/>
-                    <Entry Text="{Binding Headquarters}" Placeholder="Headquarters" PlaceholderColor="White" />
-                    <Entry Text="{Binding Founder}" Placeholder="Founder" PlaceholderColor="White" />
+                    <Entry Text="{Binding BrandName}" Placeholder="{Binding BrandNameText}" PlaceholderColor="White"/>
+                    <Entry Text="{Binding Headquarters}" Placeholder="{Binding HeadquartersText}" PlaceholderColor="White" />
+                    <Entry Text="{Binding Founder}" Placeholder="{Binding FounderText}" PlaceholderColor="White" />
 
                 </StackLayout>
                 <Frame Grid.Row="2" HasShadow="True" CornerRadius="10" Margin="20,0,20,0" Padding="0" HeightRequest="120" VerticalOptions="Start" >
@@ -37,7 +37,7 @@
                         <StackLayout Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand">
                             <Image Source="save.png" HeightRequest="25" HorizontalOptions="Center"/>
                             <StackLayout Spacing="7" HorizontalOptions="CenterAndExpand">
-                                <Label Text="Guardar" TextColor="Black" FontSize="14" FontAttributes="Bold" HorizontalOptions="Center"/>
+                                <Label Text="{Binding SaveText}" TextColor="Black" FontSize="14" FontAttributes="Bold" HorizontalOptions="Center"/>
                             </StackLayout>
                             <StackLayout.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding SaveCommand}"/>
@@ -46,7 +46,7 @@
                         <StackLayout Grid.Column="1" Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand">
                             <Image Source="modify.png" HeightRequest="25" HorizontalOptions="Center"/>
                             <StackLayout Spacing="7" HorizontalOptions="CenterAndExpand">
-                                <Label Text="Modificar" TextColor="Black" FontSize="14" FontAttributes="Bold" HorizontalOptions="Center"/>
+                                <Label Text="{Binding ModifyText}" TextColor="Black" FontSize="14" FontAttributes="Bold" HorizontalOptions="Center"/>
                             </StackLayout>
                             <StackLayout.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding ModifyCommand}"/>
@@ -55,7 +55,7 @@
                         <StackLayout Grid.Column="2" Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand">
                             <Image Source="delete.png" HeightRequest="25" HorizontalOptions="Center"/>
                             <StackLayout Spacing="7" HorizontalOptions="CenterAndExpand">
-                                <Label Text="Borrar" TextColor="Black" FontSize="14" FontAttributes="Bold" HorizontalOptions="Center"/>
+                                <Label Text="{Binding DeleteText}" TextColor="Black" FontSize="14" FontAttributes="Bold" HorizontalOptions="Center"/>
                             </StackLayout>
                             <StackLayout.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding DeleteCommand}"/>
@@ -64,7 +64,7 @@
                         <StackLayout Grid.Column="3" Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand">
                             <Image Source="clear.png" HeightRequest="25" HorizontalOptions="Center"/>
                             <StackLayout Spacing="7" HorizontalOptions="CenterAndExpand">
-                                <Label Text="Limpiar" TextColor="Black" FontSize="14" FontAttributes="Bold" HorizontalOptions="Center"/>
+                                <Label Text="{Binding ClearText}" TextColor="Black" FontSize="14" FontAttributes="Bold" HorizontalOptions="Center"/>
                             </StackLayout>
                             <StackLayout.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding CleanCommand}"/>
@@ -99,7 +99,7 @@
     </ContentPage>
 
 
-    <ContentPage Title="Car Models">
+    <ContentPage Title="{Binding ModelTitle}">
     
     <Grid>
 
@@ -114,11 +114,11 @@
             </Grid.RowDefinitions>
 
             <StackLayout Grid.Row="1" Padding="30,20">
-                    <Picker SelectedIndex="{Binding BrandPicker}" Title="BrandPicker"/>
-                    <Entry Text="{Binding ModelName}" Placeholder="Model name" PlaceholderColor="White"/>
-                    <Entry Text="{Binding Power}" Placeholder="Power" PlaceholderColor="White" />
-                <Entry Text="{Binding Color}" Placeholder="Color" PlaceholderColor="White" />
-                <Entry Text="{Binding DoorsNumber}" Placeholder="Door's Number" PlaceholderColor="White" />
+                    <Picker SelectedIndex="{Binding BrandPicker}" Title="{Binding BrandPickerText}"/>
+                    <Entry Text="{Binding ModelName}" Placeholder="{Binding ModelNameText}" PlaceholderColor="White"/>
+                    <Entry Text="{Binding Power}" Placeholder="{Binding PowerText}" PlaceholderColor="White" />
+                    <Entry Text="{Binding Color}" Placeholder="{Binding ColorText}" PlaceholderColor="White" />
+                    <Entry Text="{Binding DoorsNumber}" Placeholder="{Binding DoorsText}" PlaceholderColor="White" />
                 
 
             </StackLayout>
@@ -133,7 +133,7 @@
                     <StackLayout Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand">
                         <Image Source="save.png" HeightRequest="25" HorizontalOptions="Center"/>
                         <StackLayout Spacing="7" HorizontalOptions="CenterAndExpand">
-                            <Label Text="Guardar" TextColor="Black" FontSize="14" FontAttributes="Bold" HorizontalOptions="Center"/>
+                                <Label Text="{Binding SaveText}" TextColor="Black" FontSize="14" FontAttributes="Bold" HorizontalOptions="Center"/>
                         </StackLayout>
                         <StackLayout.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding SaveCommand}"/>
@@ -142,7 +142,7 @@
                     <StackLayout Grid.Column="1" Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand">
                         <Image Source="modify.png" HeightRequest="25" HorizontalOptions="Center"/>
                         <StackLayout Spacing="7" HorizontalOptions="CenterAndExpand">
-                            <Label Text="Modificar" TextColor="Black" FontSize="14" FontAttributes="Bold" HorizontalOptions="Center"/>
+                                <Label Text="{Binding ModifyText}" TextColor="Black" FontSize="14" FontAttributes="Bold" HorizontalOptions="Center"/>
                         </StackLayout>
                         <StackLayout.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding ModifyCommand}"/>
@@ -151,7 +151,7 @@
                     <StackLayout Grid.Column="2" Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand">
                         <Image Source="delete.png" HeightRequest="25" HorizontalOptions="Center"/>
                         <StackLayout Spacing="7" HorizontalOptions="CenterAndExpand">
-                            <Label Text="Borrar" TextColor="Black" FontSize="14" FontAttributes="Bold" HorizontalOptions="Center"/>
+                                <Label Text="{Binding DeleteText}" TextColor="Black" FontSize="14" FontAttributes="Bold" HorizontalOptions="Center"/>
                         </StackLayout>
                         <StackLayout.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding DeleteCommand}"/>
@@ -160,7 +160,7 @@
                     <StackLayout Grid.Column="3" Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand">
                         <Image Source="clear.png" HeightRequest="25" HorizontalOptions="Center"/>
                         <StackLayout Spacing="7" HorizontalOptions="CenterAndExpand">
-                            <Label Text="Limpiar" TextColor="Black" FontSize="14" FontAttributes="Bold" HorizontalOptions="Center"/>
+                                <Label Text="{Binding ClearText}" TextColor="Black" FontSize="14" FontAttributes="Bold" HorizontalOptions="Center"/>
                         </StackLayout>
                         <StackLayout.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding CleanCommand}"/>
