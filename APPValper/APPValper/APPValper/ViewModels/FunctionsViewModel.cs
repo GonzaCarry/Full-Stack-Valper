@@ -14,17 +14,32 @@ using Xamarin.Forms;
 
 namespace APPValper.ViewModels
 {
-    class FunctionsViewModel : Function
+    class FunctionsViewModel : Crud
     {
-        private Task<ObservableCollection<Function>> FunctionsTask { get; set; }
-        private ObservableCollection<Function> FunctionsAux { get; set; }
-        public ObservableCollection<Function> Functions { get; set; }
+        private Task<ObservableCollection<Car>> CarsTask { get; set; }
+        private ObservableCollection<Car> CarsAux { get; set; }
+        public ObservableCollection<Car> Cars { get; set; }
 
-        Function model;
+        private Task<ObservableCollection<Car>> BrandsTask { get; set; }
+        private ObservableCollection<Car> BrandsAux { get; set; }
+        public ObservableCollection<Car> Brands { get; set; }
 
-        FunctionsService service = new FunctionsService();
+        Car model;
+
+        CarsService service = new CarsService();
 
         OptionsService service2 = new OptionsService();
+
+        public string IDCar { get; set; }
+        public string Model { get; set; }
+        public string Power { get; set; }
+        public string Color { get; set; }
+        public int Ndoor { get; set; }
+
+        public string IDBrand { get; set; }
+        public string Name { get; set; }
+        public string Headquarters { get; set; }
+        public string Founder { get; set; }
 
         public Language Language { get; set; }
         public string Url { get; private set; }
@@ -50,8 +65,8 @@ namespace APPValper.ViewModels
         public FunctionsViewModel()
         {
             Update();
-            //ListView();
-            //ListViewAsync();
+            ListView();
+            ListViewAsync();
             SaveCommand = new Command(async () => await Save(), () => !IsBusy);
             ModifyCommand = new Command(async () => await Modify(), () => !IsBusy);
             DeleteCommand = new Command(async () => await Delete(), () => !IsBusy);
@@ -84,7 +99,7 @@ namespace APPValper.ViewModels
                 }
                 else
                 {
-                    BrandTitle = "Car´s brands";
+                    BrandTitle = "Car's brand";
                     BrandNameText = "Brand name";
                     HeadquartersText = "Headquarters";
                     FounderText = "Founder";
@@ -108,56 +123,24 @@ namespace APPValper.ViewModels
             LanguageSelected = service2.ConsultLanguage().Name;
         }
 
-        private async Task English()
-        {
-            IsBusy = true;
-            Language = new Language()
-            {
-                Name = "English"
-            };
-            Console.WriteLine("holaasd");
-            service2.SaveLanguage(Language);
-            (Application.Current).MainPage = new NavigationPage(new MainPage());
-            await Application.Current.MainPage.DisplayAlert("Atención", "Se ha cambiado el idioma a inglés.", "Aceptar");
-            await Task.Delay(2000);
-            IsBusy = false;
-            //EnglishFrame.BackgroundColor = Color.Yellow;
-            //SpanishFrame.BackgroundColor = Color.White;
-        }
-
-        private async Task Spanish()
-        {
-            IsBusy = true;
-            Language = new Language()
-            {
-                Name = "Spanish"
-            };
-            service2.SaveLanguage(Language);
-            (Application.Current).MainPage = new NavigationPage(new MainPage());
-            await Application.Current.MainPage.DisplayAlert("Atención", "Se ha cambiado el idioma a español.", "Aceptar");
-            await Task.Delay(2000);
-            IsBusy = false;
-            //EnglishFrame.BackgroundColor = Color.White;
-            //SpanishFrame.BackgroundColor = Color.Yellow;
-        }
-
         private void ListView()
         {
-            Functions = new ObservableCollection<Function>();
-            //FunctionsAux = service.ConsultLocal();
-            for (int i = 0; i < FunctionsAux.Count; i++)
+            Cars = new ObservableCollection<Car>();
+            CarsAux = service.ConsultLocalCar();
+            for (int i = 0; i < CarsAux.Count; i++)
             {
-                Functions.Add(FunctionsAux[i]);
+                Cars.Add(CarsAux[i]);
             }
         }
 
         private async Task ListViewAsync()
         {
-            //FunctionsTask = service.Consult();
-            FunctionsAux = await FunctionsTask;
-            for (int i = 0; i < FunctionsAux.Count; i++)
+            CarsTask = service.Consult();
+            CarsAux = await CarsTask;
+            for (int i = 0; i < CarsAux.Count; i++)
             {
-                Functions.Add(FunctionsAux[i]);
+                Console.WriteLine(CarsAux[i]);
+                Cars.Add(CarsAux[i]);
             }
         }
 
@@ -178,23 +161,25 @@ namespace APPValper.ViewModels
         private async Task Save()
         {
             IsBusy = true;
-            Guid idFunction = Guid.NewGuid();
-            model = new Function()
+            Guid idCar = Guid.NewGuid();
+            model = new Car()
             {
-                Server = Server,
-                Action = Action,
-                Description = Description,
-                Id = idFunction.ToString()
+                Model = Model,
+                Power = Power,
+                Color = Color,
+                Ndoor = Ndoor,
+                /*BrandID = Id,*/
+                Id = idCar.ToString()
             };
-            if (string.IsNullOrEmpty(model.Server))
+            if (string.IsNullOrEmpty(model.Model))
             {
-                await Application.Current.MainPage.DisplayAlert("Error", "El servidor no puede ser nulo", "Aceptar");
+                await Application.Current.MainPage.DisplayAlert("Error", "El modelo no puede ser nulo", "Aceptar");
             }
             else
             {
-                //service.Save(model);
-                //service.SaveLocal(model);
-                Functions.Add(model);
+                service.Save(model);
+                service.SaveLocalCar(model);
+                Cars.Add(model);
                 Clean();
             }
             await Task.Delay(2000);
@@ -204,21 +189,25 @@ namespace APPValper.ViewModels
         private async Task Modify()
         {
             IsBusy = true;
-            model = new Function()
+            model = new Car()
             {
-                Server = Server,
-                Action = Action,
-                Description = Description,
-                Id = Id
+                Model = Model,
+                Power = Power,
+                Color = Color,
+                Ndoor = Ndoor,
+                /*BrandID = Id,*/
+                Id = IDCar
             };
-            //service.Modify(model);
-            //service.ModifyLocal(model);
-            var item = Functions.FirstOrDefault(i => i.Id == model.Id);
+            service.Modify(model);
+            service.ModifyLocalCar(model);
+            var item = Cars.FirstOrDefault(i => i.Id == model.Id);
             if (item != null)
             {
-                item.Server = model.Server;
-                item.Action = model.Action;
-                item.Description = model.Description;
+                item.Model = model.Model;
+                item.Power = model.Power;
+                item.Color = model.Color;
+                item.Ndoor = model.Ndoor;
+                item.BrandID = model.BrandID;
             }
             Clean();
             await Task.Delay(2000);
@@ -228,17 +217,19 @@ namespace APPValper.ViewModels
         private async Task Delete()
         {
             IsBusy = true;
-            model = new Function()
+            model = new Car()
             {
-                Server = Server,
-                Action = Action,
-                Description = Description,
-                Id = Id
+                Model = Model,
+                Power = Power,
+                Color = Color,
+                Ndoor = Ndoor,
+                /*BrandID = Id,*/
+                Id = IDCar
             };
-            //service.DeleteLocal(model);
-            //service.Delete(model.Id);
-            var item = Functions.FirstOrDefault(i => i.Id == model.Id);
-            Functions.Remove(item);
+            service.DeleteLocalCar(model);
+            service.Delete(model.Id);
+            var item = Cars.FirstOrDefault(i => i.Id == model.Id);
+            Cars.Remove(item);
             Clean();
             await Task.Delay(2000);
             IsBusy = false;
@@ -246,10 +237,16 @@ namespace APPValper.ViewModels
 
         private void Clean()
         {
-            Server = "";
-            Action = "";
-            Description = "";
-            Id = "";
+            Model = "";
+            Power = "";
+            Color = "";
+            Ndoor = 0;
+            IDBrand = "";
+            IDCar = "";
+
+            Name = "";
+            Headquarters = "";
+            Founder = "";
         }
 
         private void Go()

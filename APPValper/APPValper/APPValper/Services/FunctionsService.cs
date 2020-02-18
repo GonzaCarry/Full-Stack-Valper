@@ -13,24 +13,24 @@ using System.Configuration;
 
 namespace APPValper.Resources
 {
-    public class FunctionsService
+    public class CarsService
     {
-        public ObservableCollection<Function> Functions { get; set; }
+        public ObservableCollection<Car> Cars { get; set; }
         private string apiUrl;
 
-        public FunctionsService()
+        public CarsService()
         {
-            //using (var data = new DataAccess())
-            //{
-            //    apiUrl = data.GetConnection().Url + "/api/Functions";
-            //}
-            if (Functions == null)
+            using (var data = new DataAccess())
             {
-                Functions = new ObservableCollection<Function>();
+                apiUrl = data.GetConnection().Url + "/api/Cars";
+            }
+            if (Cars == null)
+            {
+                Cars = new ObservableCollection<Car>();
             }
         }
 
-        public async System.Threading.Tasks.Task<ObservableCollection<Function>> Consult()
+        public async System.Threading.Tasks.Task<ObservableCollection<Car>> Consult()
         {
             try
             {
@@ -42,10 +42,10 @@ namespace APPValper.Resources
                     if (response.IsSuccessStatusCode)
                     {
                         var result = await response.Content.ReadAsStringAsync();
-                        Functions = JsonConvert.DeserializeObject<ObservableCollection<Function>>(result);
+                        Cars = JsonConvert.DeserializeObject<ObservableCollection<Car>>(result);
                     }
                 }
-                return Functions;
+                return Cars;
             }
             catch (Exception)
             {
@@ -53,18 +53,18 @@ namespace APPValper.Resources
             }
         }
 
-        public ObservableCollection<Function> ConsultLocal()
+        public ObservableCollection<Car> ConsultLocalCar()
         {
-            //using (var data = new DataAccess())
-            //{
-            //    //var list = data.GetFunctions();
-            //    //foreach (var item in list)
-            //        //Functions.Add(item);
-            //}
-            return Functions;
+            using (var data = new DataAccess())
+            {
+                var list = data.GetCars();
+                foreach (var item in list)
+                    Cars.Add(item);
+            }
+            return Cars;
         }
 
-        public async void Save(Function model)
+        public async void Save(Car model)
         {
             try
             {
@@ -89,15 +89,15 @@ namespace APPValper.Resources
             }
         }
 
-        public void SaveLocal(Function model)
+        public void SaveLocalCar(Car model)
         {
-            //using (var data = new DataAccess())
-            //{
-            //    //data.InsertFunction(model);
-            //}
+            using (var data = new DataAccess())
+            {
+                data.InsertCar(model);
+            }
         }
 
-        public async void Modify(Function model)
+        public async void Modify(Car model)
         {
             try
             {
@@ -118,15 +118,15 @@ namespace APPValper.Resources
             }
         }
 
-        public void ModifyLocal(Function model)
+        public void ModifyLocalCar(Car model)
         {
-            //using (var data = new DataAccess())
-            //{
-            //    //data.ModifyFunction(model);
-            //}
+            using (var data = new DataAccess())
+            {
+                data.ModifyCar(model);
+            }
         }
 
-        public async void Delete(string idFunction)
+        public async void Delete(string idCar)
         {
             try
             {
@@ -134,7 +134,7 @@ namespace APPValper.Resources
                 using (client = new HttpClient())
                 {
                     client = CreateClient();
-                    HttpResponseMessage response = await client.DeleteAsync(apiUrl + "/" + idFunction);
+                    HttpResponseMessage response = await client.DeleteAsync(apiUrl + "/" + idCar);
                 }
             }
             catch (Exception)
@@ -143,12 +143,12 @@ namespace APPValper.Resources
             }
         }
 
-        public void DeleteLocal(Function model)
+        public void DeleteLocalCar(Car model)
         {
-            //using (var data = new DataAccess())
-            //{
-            //    //data.DeleteFunction(model);
-            //}
+            using (var data = new DataAccess())
+            {
+                data.DeleteCar(model);
+            }
         }
 
         private HttpClient CreateClient()

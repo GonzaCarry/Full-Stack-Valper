@@ -198,14 +198,15 @@ namespace APPValper.ViewModels
 
         private async Task CRUD()
         {
-            if (User.Users[0].Logged)
-            {
-                await Navigation.PushAsync(new Functions());
-            }
-            else
-            {
-                await Application.Current.MainPage.DisplayAlert("Error", "Debe estar conectado para acceder", "Aceptar");
-            }
+            await Navigation.PushAsync(new Functions());
+            //if (User.Users[0].Logged)
+            //{
+            //    await Navigation.PushAsync(new Functions());
+            //}
+            //else
+            //{
+            //    await Application.Current.MainPage.DisplayAlert("Error", "Debe estar conectado para acceder", "Aceptar");
+            //}
 
         }
 
