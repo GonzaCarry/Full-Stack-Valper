@@ -22,6 +22,7 @@ namespace APPValper.Models
 
         private string id;
 
+        [PrimaryKey]
         public string Id
         {
             get { return id; }

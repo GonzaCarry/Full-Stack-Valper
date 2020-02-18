@@ -43,7 +43,6 @@ namespace APPValper.ViewModels
         public new string Founder { get; set; }
 
         public Language Language { get; set; }
-        public string Url { get; private set; }
 
         private string LanguageSelected;
 
@@ -144,8 +143,6 @@ namespace APPValper.ViewModels
 
         private void Update()
         {
-            Url = service2.ConsultLocal().Url;
-            Console.WriteLine(Url);
             LanguageSelected = service2.ConsultLanguage().Name;
         }
 
