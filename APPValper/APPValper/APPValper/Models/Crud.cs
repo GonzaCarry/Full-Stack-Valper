@@ -11,7 +11,7 @@ using SQLite;
 
 namespace APPValper.Models
 {
-    public partial class Brand : INotifyPropertyChanged
+    public partial class Crud : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -20,14 +20,15 @@ namespace APPValper.Models
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
-        private string id;
+        private string idBrand;
 
-        public string Id
+        [PrimaryKey]
+        public string IdBrand
         {
-            get { return id; }
+            get { return idBrand; }
             set
             {
-                id = value;
+                idBrand = value;
                 OnPropertyChanged();
             }
         }
@@ -64,66 +65,6 @@ namespace APPValper.Models
             set
             {
                 founder = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private string idCar;
-
-        public string IdCar
-        {
-            get { return idCar; }
-            set
-            {
-                id = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private string model;
-
-        public string Model
-        {
-            get { return model; }
-            set
-            {
-                model = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private string power;
-
-        public string Power
-        {
-            get { return power; }
-            set
-            {
-                power = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private string color;
-
-        public string Color
-        {
-            get { return color; }
-            set
-            {
-                color = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private int ndoor;
-
-        public int Ndoor
-        {
-            get { return ndoor; }
-            set
-            {
-                ndoor = value;
                 OnPropertyChanged();
             }
         }

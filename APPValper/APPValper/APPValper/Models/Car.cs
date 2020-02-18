@@ -81,9 +81,9 @@ namespace APPValper.Models
             }
         }
 
-        private string ndoor;
+        private int ndoor;
 
-        public string Ndoor
+        public int Ndoor
         {
             get { return ndoor; }
             set
