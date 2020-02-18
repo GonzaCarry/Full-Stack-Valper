@@ -62,8 +62,10 @@
                 </Grid.RowDefinitions>
 
                 <StackLayout Padding="50,20,0,0">
-                    <Label Text="{Binding chooseLanguageText}" TextColor="White" FontSize="20"/>
+                    <Label Text="Elija un idioma" TextColor="White" FontSize="20"/>
+
                 </StackLayout>
+
 
                 <Grid Grid.Row="1">
 
@@ -112,18 +114,11 @@
                     <StackLayout Grid.Row="1" Padding="30,50">
                         <StackLayout Orientation="Horizontal" >
                             <Entry Text="{Binding Url}" Placeholder="{Binding UrlText}" PlaceholderColor="White" HorizontalOptions="Start" />
-                            <Frame CornerRadius="100" 
-                                   HeightRequest="25"
-                                   WidthRequest="25"
-                                   HorizontalOptions="End"
-                                   Padding="29"
-                                   IsClippedToBounds="True">
-                                <Image Source="check.png" 
-                                               HorizontalOptions="Center"
-                                               VerticalOptions="Center" />
-                            </Frame>
-
+                            <Image Source="check.png" HeightRequest="50" HorizontalOptions="End"/>
                         </StackLayout>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding SaveCommand}"/>
+                        </StackLayout.GestureRecognizers>
                     </StackLayout>
                 </Grid>
             </Grid>

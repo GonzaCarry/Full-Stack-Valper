@@ -67,38 +67,6 @@ namespace APPValper.ViewModels
             LanguageSelected = service2.ConsultLanguage().Name;
         }
 
-        private async Task English()
-        {
-            IsBusy = true;
-            Language = new Language()
-            {
-                Name = "English"
-            };
-            Console.WriteLine("holaasd");
-            service2.SaveLanguage(Language);
-            (Application.Current).MainPage = new NavigationPage(new ItemsPage());
-            await Application.Current.MainPage.DisplayAlert("Atención", "Se ha cambiado el idioma a inglés.", "Aceptar");
-            await Task.Delay(2000);
-            IsBusy = false;
-            //EnglishFrame.BackgroundColor = Color.Yellow;
-            //SpanishFrame.BackgroundColor = Color.White;
-        }
-
-        private async Task Spanish()
-        {
-            IsBusy = true;
-            Language = new Language()
-            {
-                Name = "Spanish"
-            };
-            service2.SaveLanguage(Language);
-            (Application.Current).MainPage = new NavigationPage(new ItemsPage());
-            await Application.Current.MainPage.DisplayAlert("Atención", "Se ha cambiado el idioma a español.", "Aceptar");
-            await Task.Delay(2000);
-            IsBusy = false;
-            //EnglishFrame.BackgroundColor = Color.White;
-            //SpanishFrame.BackgroundColor = Color.Yellow;
-        }
 
         //private async Task Login()
         //{
