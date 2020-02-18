@@ -43,7 +43,7 @@ namespace APPValper.ViewModels
         public string TitleSettings { get; set; }
         public string TitleHome { get; set; }
         public string UrlText { get; set; }
-        public string TryIPButton { get; set; }
+        public string chooseLanguageText { get; set; }
 
 
 
@@ -84,7 +84,7 @@ namespace APPValper.ViewModels
                     TitleSettings = "Opciones";
                     TitleHome = "Página principal";
                     UrlText = "Direccion IP";
-                    TryIPButton = "Pruebe esta IP";
+                    chooseLanguageText = "Elije un idioma";
     }
                 else
                 {
@@ -97,7 +97,7 @@ namespace APPValper.ViewModels
                     TitleSettings = "Settings";
                     TitleHome = "Home";
                     UrlText = "IP Address";
-                    TryIPButton = "Try this IP";
+                    chooseLanguageText = "Choose language";
                 }
             }
         }

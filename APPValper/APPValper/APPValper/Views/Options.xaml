@@ -16,11 +16,26 @@
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
 
-                <Grid Grid.Row="0">
-                    <StackLayout Padding="40,30,0,0">
+                <StackLayout Padding="50,20,0,0">
+                    <Label Text="Elija un idioma" TextColor="White" FontSize="20"/>
+                    
+                </StackLayout>
+                
+
+                <Grid Grid.Row="1">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+
+
+                    <StackLayout Grid.Column="0" Padding="40,30,0,0">
                         <Frame CornerRadius="100" 
                     HeightRequest="50"
                     WidthRequest="50"
@@ -32,12 +47,13 @@
                             VerticalOptions="Center"
                             Aspect="AspectFill"/>
                         </Frame>
+
                         <StackLayout.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding SpanishCommand}"/>
                         </StackLayout.GestureRecognizers>
                     </StackLayout>
 
-                    <StackLayout Padding="0,30,40,0" >
+                    <StackLayout Grid.Column="1" Padding="0,30,40,0" >
                         <Frame CornerRadius="100" 
                     HeightRequest="50"
                     WidthRequest="50"
@@ -48,47 +64,30 @@
                             HorizontalOptions="Center"
                             VerticalOptions="Center" />
                         </Frame>
+
                         <StackLayout.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding EnglishCommand}"/>
                         </StackLayout.GestureRecognizers>
                     </StackLayout>
 
                     <StackLayout Grid.Row="1" Padding="30,50">
-                        <Entry Text="{Binding IpAddress}" Placeholder="IP Address" PlaceholderColor="White"/>
-                        <Button Command="{Binding CheckIp}" Text="Try this Ip" BackgroundColor="White" BorderRadius="20" TextColor="#1E90FF" />
+                        <StackLayout Orientation="Horizontal" >
+                            <Entry Text="{Binding Url}" Placeholder="{Binding UrlText}" PlaceholderColor="White" HorizontalOptions="Start" />
+                            <Frame CornerRadius="100" 
+                                   HeightRequest="25"
+                                   WidthRequest="25"
+                                   HorizontalOptions="End"
+                                   Padding="26"
+                                   IsClippedToBounds="True">
+                                        <Image Source="check.png" 
+                                               HorizontalOptions="Center"
+                                               VerticalOptions="Center" />
+                            </Frame>
 
+                        </StackLayout>
                     </StackLayout>
                 </Grid>
-
-                <Grid Grid.Row="1">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-
-                    <BoxView Color="LightGray" Grid.Column="0" Grid.RowSpan="2" Margin="0,145,-3,0"/>
-                    <BoxView Color="Gray" Grid.Column="1" Grid.RowSpan="2" Margin="-3,145,0,0"/>
-
-                    <StackLayout Orientation="Vertical"  HorizontalOptions="Center" Padding="20" Margin="-20,124,-20,-17" Grid.Column="0">
-                        <StackLayout.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding HomeCommand}"/>
-                        </StackLayout.GestureRecognizers>
-                        <Image x:Name="tab_home_icon_selected" IsVisible="True" Source="home.png" HeightRequest="75" Margin="0,0,0,0" />
-                    </StackLayout>
-
-
-                    <StackLayout Orientation="Vertical"  HorizontalOptions="Center" Padding="20" Margin="-20,124,-20,-17" Grid.Column="1">
-                        <!--<StackLayout.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding OptionsCommand}"/>
-                        </StackLayout.GestureRecognizers>-->
-                        <Image x:Name="tab_scan_icon_unselected"  Source="options.png" HeightRequest="70" Margin="0,0,0,0" />
-                    </StackLayout>
-
-                </Grid>
-
-
             </Grid>
-
         </Grid>
 
 

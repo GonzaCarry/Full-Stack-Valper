@@ -1,11 +1,13 @@
 using APPValper.Models;
 using APPValper.Resources;
+using APPValper.Services;
 using APPValper.Views;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -22,8 +24,32 @@ namespace APPValper.ViewModels
 
         FunctionsService service = new FunctionsService();
 
+        OptionsService service2 = new OptionsService();
+
+        public Language Language { get; set; }
+        public string Url { get; private set; }
+
+        private string LanguageSelected;
+
+        public string BrandTitle { get; set; }
+        public string BrandNameText { get; set; }
+        public string HeadquartersText { get; set; }
+        public string FounderText { get; set; }
+        public string SaveText { get; set; }
+        public string ModifyText { get; set; }
+        public string DeleteText { get; set; }
+        public string ClearText { get; set; }
+        public string ModelTitle { get; set; }
+        public string BrandPickerText { get; set; }
+        public string ModelNameText { get; set; }
+        public string PowerText { get; set; }
+        public string ColorText { get; set; }
+        public string DoorsText { get; set; }
+
+
         public FunctionsViewModel()
         {
+            Update();
             //ListView();
             //ListViewAsync();
             SaveCommand = new Command(async () => await Save(), () => !IsBusy);
@@ -32,6 +58,87 @@ namespace APPValper.ViewModels
             CleanCommand = new Command(Clean, () => !IsBusy);
             GoCommand = new Command(Go, () => !IsBusy);
             BackCommand = new Command(Back, () => !IsBusy);
+            CheckLanguage();
+        }
+
+        private void CheckLanguage()
+        {
+            if (!string.IsNullOrEmpty(LanguageSelected))
+            {
+                if (LanguageSelected.Equals("Spanish"))
+                {
+                    BrandTitle = "Marcas de coche";
+                    BrandNameText = "Nombre de la marca";
+                    HeadquartersText = "Sede";
+                    FounderText = "Fundador";
+                    SaveText = "Guardar";
+                    ModifyText = "Modificar";
+                    DeleteText = "Eliminar";
+                    ClearText = "Limpiar";
+                    ModelTitle = "Modelos de coche";
+                    BrandPickerText = "Nombre de la marca";
+                    ModelNameText = "Nombre del modelo";
+                    PowerText = "Caballos de potencia";
+                    ColorText = "Color";
+                    DoorsText = "Numero de puertas";
+                }
+                else
+                {
+                    BrandTitle = "Car´s brands";
+                    BrandNameText = "Brand name";
+                    HeadquartersText = "Headquarters";
+                    FounderText = "Founder";
+                    SaveText = "Save";
+                    ModifyText = "Modify";
+                    DeleteText = "Delete";
+                    ClearText = "Clean";
+                    ModelTitle = "Car's Models";
+                    BrandPickerText = "Brand name";
+                    ModelNameText = "Model name";
+                    PowerText = "power";
+                    ColorText = "Color";
+                    DoorsText = "Door's number";
+                }
+            }
+        }
+
+        private void Update()
+        {
+            Url = service2.ConsultLocal().Url;
+            LanguageSelected = service2.ConsultLanguage().Name;
+        }
+
+        private async Task English()
+        {
+            IsBusy = true;
+            Language = new Language()
+            {
+                Name = "English"
+            };
+            Console.WriteLine("holaasd");
+            service2.SaveLanguage(Language);
+            (Application.Current).MainPage = new NavigationPage(new MainPage());
+            await Application.Current.MainPage.DisplayAlert("Atención", "Se ha cambiado el idioma a inglés.", "Aceptar");
+            await Task.Delay(2000);
+            IsBusy = false;
+            //EnglishFrame.BackgroundColor = Color.Yellow;
+            //SpanishFrame.BackgroundColor = Color.White;
+        }
+
+        private async Task Spanish()
+        {
+            IsBusy = true;
+            Language = new Language()
+            {
+                Name = "Spanish"
+            };
+            service2.SaveLanguage(Language);
+            (Application.Current).MainPage = new NavigationPage(new MainPage());
+            await Application.Current.MainPage.DisplayAlert("Atención", "Se ha cambiado el idioma a español.", "Aceptar");
+            await Task.Delay(2000);
+            IsBusy = false;
+            //EnglishFrame.BackgroundColor = Color.White;
+            //SpanishFrame.BackgroundColor = Color.Yellow;
         }
 
         private void ListView()
