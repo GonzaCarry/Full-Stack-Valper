@@ -17,28 +17,35 @@ namespace APPValper.Views
         FunctionsViewModel Context = new FunctionsViewModel();
         public Functions()
         {
-            Console.WriteLine("pasa");
             InitializeComponent();
-
             BindingContext = Context;
-            //LvFunctions.ItemSelected += LvFunctions_ItemSelected;
+            LvCars.ItemSelected += LvCars_ItemSelected;
+            LvBrands.ItemSelected += LvBrands_ItemSelected;
         }
 
-        //private void LvFunctions_ItemSelected(object sender, SelectedItemChangedEventArgs e)
-        //{
-        //    if (e.SelectedItem != null)
-        //    {
-        //        Function model = (Function)e.SelectedItem;
-        //        if (Context.GoBool)
-        //        {
-        //            ((ListView)sender).SelectedItem = null;
-        //            //Navigation.PushAsync(new DetallePage(model));
-        //        }
-        //        Context.Server = model.Server;
-        //        Context.Action = model.Action;
-        //        Context.Description = model.Description;
-        //        Context.Id = model.Id;
-        //    }
-        //}
+        private void LvCars_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            if (e.SelectedItem != null)
+            {
+                Car model = (Car)e.SelectedItem;
+                Context.Model = model.Model;
+                Context.Power = model.Power;
+                Context.Color = model.Color;
+                Context.Ndoor = model.Ndoor;
+                Context.IDCar = model.Id;
+            }
+        }
+
+        private void LvBrands_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            if (e.SelectedItem != null)
+            {
+                Brand model = (Brand)e.SelectedItem;
+                Context.Name = model.Name;
+                Context.Headquarters = model.Headquarters;
+                Context.Founder = model.Founder;
+                Context.IDBrand = model.Id;
+            }
+        }
     }
 }

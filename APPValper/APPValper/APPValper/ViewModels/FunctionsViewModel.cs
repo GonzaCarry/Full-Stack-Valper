@@ -32,15 +32,15 @@ namespace APPValper.ViewModels
         OptionsService service2 = new OptionsService();
 
         public string IDBrand { get; set; }
-        public string Model { get; set; }
-        public string Power { get; set; }
-        public string Color { get; set; }
-        public int Ndoor { get; set; }
+        public new string Model { get; set; }
+        public new string Power { get; set; }
+        public new string Color { get; set; }
+        public new int Ndoor { get; set; }
 
         public string IDCar { get; set; }
-        public string Name { get; set; }
-        public string Headquarters { get; set; }
-        public string Founder { get; set; }
+        public new string Name { get; set; }
+        public new string Headquarters { get; set; }
+        public new string Founder { get; set; }
 
         public Language Language { get; set; }
         public string Url { get; private set; }
@@ -76,7 +76,8 @@ namespace APPValper.ViewModels
         public FunctionsViewModel()
         {
             Update();
-            
+            Brand();
+            Car();
             CheckLanguage();
         }
 
@@ -106,7 +107,7 @@ namespace APPValper.ViewModels
             {
                 if (LanguageSelected.Equals("Spanish"))
                 {
-                    CarTitle = "Marcas de coche";
+                    BrandTitle = "Marcas de coche";
                     BrandNameText = "Nombre de la marca";
                     HeadquartersText = "Sede";
                     FounderText = "Fundador";
@@ -178,7 +179,7 @@ namespace APPValper.ViewModels
                 Name = Name,
                 Headquarters = Headquarters,
                 Founder = Founder,
-                IdBrand = idBrand.ToString()
+                Id = idBrand.ToString()
             };
             if (string.IsNullOrEmpty(BrandModel.Name))
             {
@@ -203,17 +204,17 @@ namespace APPValper.ViewModels
                 Name = Name,
                 Headquarters = Headquarters,
                 Founder = Founder,
-                IdBrand = IDBrand
+                Id = IDBrand
             };
             service.ModifyBrand(BrandModel);
             service.ModifyLocalBrand(BrandModel);
-            var item = Brands.FirstOrDefault(i => i.IdBrand == BrandModel.IdBrand);
+            var item = Brands.FirstOrDefault(i => i.Id == BrandModel.Id);
             if (item != null)
             {
                 item.Name = BrandModel.Name;
                 item.Headquarters = BrandModel.Headquarters;
                 item.Founder = BrandModel.Founder;
-                item.IdBrand = BrandModel.IdBrand;
+                item.Id = BrandModel.Id;
             }
             CleanBrand();
             await Task.Delay(2000);
@@ -228,11 +229,11 @@ namespace APPValper.ViewModels
                 Name = Name,
                 Headquarters = Headquarters,
                 Founder = Founder,
-                IdBrand = IDBrand
+                Id = IDBrand
             };
             service.DeleteLocalBrand(BrandModel);
-            service.DeleteBrand(BrandModel.IdBrand);
-            var item = Brands.FirstOrDefault(i => i.IdBrand == BrandModel.IdBrand);
+            service.DeleteBrand(BrandModel.Id);
+            var item = Brands.FirstOrDefault(i => i.Id == BrandModel.Id);
             Brands.Remove(item);
             CleanBrand();
             await Task.Delay(2000);
@@ -241,6 +242,7 @@ namespace APPValper.ViewModels
 
         private void CleanBrand()
         {
+            SaveText = "Hola";
             Model = "";
             Power = "";
             Color = "";
@@ -284,7 +286,7 @@ namespace APPValper.ViewModels
                 Color = Color,
                 Ndoor = Ndoor,
                 /*BrandID = Id,*/
-                CarID = idCar.ToString()
+                Id = idCar.ToString()
             };
             if (string.IsNullOrEmpty(CarModel.Model))
             {
@@ -311,18 +313,18 @@ namespace APPValper.ViewModels
                 Color = Color,
                 Ndoor = Ndoor,
                 /*BrandID = Id,*/
-                CarID = IDCar
+                Id = IDCar
             };
             service.ModifyCar(CarModel);
             service.ModifyLocalCar(CarModel);
-            var item = Cars.FirstOrDefault(i => i.CarID == CarModel.CarID);
+            var item = Cars.FirstOrDefault(i => i.Id == CarModel.Id);
             if (item != null)
             {
                 item.Model = CarModel.Model;
                 item.Power = CarModel.Power;
                 item.Color = CarModel.Color;
                 item.Ndoor = CarModel.Ndoor;
-                item.CarID = CarModel.CarID;
+                item.Id = CarModel.Id;
             }
             CleanCar();
             await Task.Delay(2000);
@@ -339,11 +341,11 @@ namespace APPValper.ViewModels
                 Color = Color,
                 Ndoor = Ndoor,
                 /*BrandID = Id,*/
-                CarID = IDCar
+                Id = IDCar
             };
             service.DeleteLocalCar(CarModel);
-            service.DeleteCar(CarModel.CarID);
-            var item = Cars.FirstOrDefault(i => i.CarID == CarModel.CarID);
+            service.DeleteCar(CarModel.Id);
+            var item = Cars.FirstOrDefault(i => i.Id == CarModel.Id);
             Cars.Remove(item);
             CleanCar();
             await Task.Delay(2000);

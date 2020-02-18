@@ -73,17 +73,17 @@
                     </Grid>
                 </Frame>
 
-                <ListView x:Name="LvCars" ItemsSource="{Binding Cars}" SeparatorVisibility="None"
+                <ListView x:Name="LvBrands" ItemsSource="{Binding Brands}" SeparatorVisibility="None"
                   Grid.Row="3" Margin="20,20" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
                     <ListView.ItemTemplate>
                         <DataTemplate >
                             <ViewCell>
                                 <Frame BackgroundColor="White" BorderColor="#F0F0F0" Padding="5" Margin="0,0,0,5" HasShadow="False">
                                     <Grid HeightRequest="50" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
-                                        <Label Text="{Binding Model}" TextColor="White" FontSize="25" VerticalOptions="Center" Margin="5,-5,0,0"/>
-                                        <Label Text="{Binding Power}" TextColor="White" FontSize="25" VerticalOptions="Center" Margin="5,-5,0,0"/>
+                                        <Label Text="{Binding Name}" TextColor="White" FontSize="25" VerticalOptions="Center" Margin="5,-5,0,0"/>
+                                        <Label Text="{Binding Headquarters}" TextColor="White" FontSize="25" VerticalOptions="Center" Margin="5,-5,0,0"/>
                                         <StackLayout Grid.Column="2" Orientation="Horizontal" Margin="-25,0" HorizontalOptions="End" VerticalOptions="Center">
-                                            <Label Text="{Binding Color}" TextColor="White" FontSize="25" FontAttributes="Bold" VerticalOptions="Center"/>
+                                            <Label Text="{Binding Founder}" TextColor="White" FontSize="25" FontAttributes="Bold" VerticalOptions="Center"/>
                                         </StackLayout>
                                     </Grid>
                                 </Frame>
@@ -91,7 +91,6 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-
 
             </Grid>
         </Grid>
@@ -169,17 +168,17 @@
                     </Grid>
                 </Frame>
 
-                <ListView x:Name="LvBrands" ItemsSource="{Binding Brands}" SeparatorVisibility="None"
+                <ListView x:Name="LvCars" ItemsSource="{Binding Cars}" SeparatorVisibility="None"
                   Grid.Row="3" Margin="20,20" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
                     <ListView.ItemTemplate>
                         <DataTemplate >
                             <ViewCell>
                                 <Frame BackgroundColor="White" BorderColor="#F0F0F0" Padding="5" Margin="0,0,0,5" HasShadow="False">
                                     <Grid HeightRequest="50" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
-                                        <Label Text="{Binding Name}" TextColor="White" FontSize="25" VerticalOptions="Center" Margin="5,-5,0,0"/>
-                                        <Label Text="{Binding Headquarters}" TextColor="White" FontSize="25" VerticalOptions="Center" Margin="5,-5,0,0"/>
+                                        <Label Text="{Binding Model}" TextColor="White" FontSize="25" VerticalOptions="Center" Margin="5,-5,0,0"/>
+                                        <Label Text="{Binding Power}" TextColor="White" FontSize="25" VerticalOptions="Center" Margin="5,-5,0,0"/>
                                         <StackLayout Grid.Column="2" Orientation="Horizontal" Margin="-25,0" HorizontalOptions="End" VerticalOptions="Center">
-                                            <Label Text="{Binding Founder}" TextColor="White" FontSize="25" FontAttributes="Bold" VerticalOptions="Center"/>
+                                            <Label Text="{Binding Color}" TextColor="White" FontSize="25" FontAttributes="Bold" VerticalOptions="Center"/>
                                         </StackLayout>
                                     </Grid>
                                 </Frame>
@@ -187,7 +186,6 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-
 
             </Grid>
         </Grid>

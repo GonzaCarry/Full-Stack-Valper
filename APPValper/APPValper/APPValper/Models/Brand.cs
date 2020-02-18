@@ -11,7 +11,7 @@ using SQLite;
 
 namespace APPValper.Models
 {
-    public class Brand : INotifyPropertyChanged
+    public partial class Brand : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -21,7 +21,7 @@ namespace APPValper.Models
         }
 
         private string id;
-        [PrimaryKey]
+
         public string Id
         {
             get { return id; }
@@ -81,3 +81,4 @@ namespace APPValper.Models
         }
     }
 }
+

@@ -117,7 +117,7 @@ namespace APPValper.Resources
                     client = CreateClient();
                     var json = JsonConvert.SerializeObject(model);
                     var content = new StringContent(json, Encoding.UTF8, "application/json");
-                    Uri apiUrl2 = new Uri(string.Format(apiUrl + "/{0}", model.IdBrand));
+                    Uri apiUrl2 = new Uri(string.Format(apiUrl + "/{0}", model.Id));
                     HttpResponseMessage response = await client.PutAsync(apiUrl2, content);
                     Console.WriteLine(response.IsSuccessStatusCode);
                 }
@@ -238,7 +238,7 @@ namespace APPValper.Resources
                     client = CreateClient();
                     var json = JsonConvert.SerializeObject(model);
                     var content = new StringContent(json, Encoding.UTF8, "application/json");
-                    Uri apiUrl2 = new Uri(string.Format(apiUrl3 + "/{0}", model.CarID));
+                    Uri apiUrl2 = new Uri(string.Format(apiUrl3 + "/{0}", model.Id));
                     HttpResponseMessage response = await client.PutAsync(apiUrl2, content);
                     Console.WriteLine(response.IsSuccessStatusCode);
                 }
