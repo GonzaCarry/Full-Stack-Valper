@@ -34,7 +34,6 @@ namespace APPValper.ViewModels
         OptionsService service2 = new OptionsService();
 
         public Language Language { get; set; }
-        public string Url { get; private set; }
 
         private string LanguageSelected;
         private int BrandsID = 0;
