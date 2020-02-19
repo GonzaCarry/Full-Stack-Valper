@@ -15,9 +15,9 @@ namespace APPValper.Models
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public void OnPropertyChanged([CallerMemberName]string name = "")
+        public void OnPropertyChanged([CallerMemberName]string model = "")
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(model));
         }
 
         private string id;

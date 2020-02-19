@@ -14,12 +14,14 @@ using Xamarin.Forms;
 
 namespace APPValper.ViewModels
 {
-    class FunctionsViewModel : Crud
+    public class FunctionsViewModel : Crud
     {
+        private ObservableCollection<Brand> BrandsLocal { get; set; }
         private Task<ObservableCollection<Brand>> BrandsTask { get; set; }
         private ObservableCollection<Brand> BrandsAux { get; set; }
         public ObservableCollection<Brand> Brands { get; set; }
 
+        private ObservableCollection<Car> CarsLocal { get; set; }
         private Task<ObservableCollection<Car>> CarsTask { get; set; }
         private ObservableCollection<Car> CarsAux { get; set; }
         public ObservableCollection<Car> Cars { get; set; }
@@ -31,21 +33,11 @@ namespace APPValper.ViewModels
 
         OptionsService service2 = new OptionsService();
 
-        public string IDBrand { get; set; }
-        public new string Model { get; set; }
-        public new string Power { get; set; }
-        public new string Color { get; set; }
-        public new int Ndoor { get; set; }
-
-        public string IDCar { get; set; }
-        public new string Name { get; set; }
-        public new string Headquarters { get; set; }
-        public new string Founder { get; set; }
-
         public Language Language { get; set; }
         public string Url { get; private set; }
 
         private string LanguageSelected;
+        private int BrandsID = 0;
 
         public string CarTitle { get; set; }
         public string BrandTitle { get; set; }
@@ -72,6 +64,7 @@ namespace APPValper.ViewModels
         public Command ModifyCarCommand { get; set; }
         public Command DeleteCarCommand { get; set; }
         public Command CleanCarCommand { get; set; }
+        public Command ChangeBrandIDCommand { get; set; }
 
         public FunctionsViewModel()
         {
@@ -99,6 +92,7 @@ namespace APPValper.ViewModels
             ModifyCarCommand = new Command(async () => await ModifyCar(), () => !IsBusy);
             DeleteCarCommand = new Command(async () => await DeleteCar(), () => !IsBusy);
             CleanCarCommand = new Command(CleanCar, () => !IsBusy);
+            ChangeBrandIDCommand = new Command(ChangeBrandID, () => !IsBusy);
         }
 
         private void CheckLanguage()
@@ -145,35 +139,62 @@ namespace APPValper.ViewModels
         private void Update()
         {
             Url = service2.ConsultLocal().Url;
-            Console.WriteLine(Url);
             LanguageSelected = service2.ConsultLanguage().Name;
         }
 
         private void ListViewBrand()
         {
             Brands = new ObservableCollection<Brand>();
+            BrandsLocal = new ObservableCollection<Brand>();
             BrandsAux = service.ConsultLocalBrand();
             for (int i = 0; i < BrandsAux.Count; i++)
             {
                 Brands.Add(BrandsAux[i]);
+                BrandsLocal.Add(BrandsAux[i]);
             }
         }
 
         private async Task ListViewAsyncBrand()
         {
+            Brands = new ObservableCollection<Brand>();
             BrandsTask = service.ConsultBrand();
             BrandsAux = await BrandsTask;
+            SyncroBrand();
             for (int i = 0; i < BrandsAux.Count; i++)
             {
-                Console.WriteLine(BrandsAux[i]);
                 Brands.Add(BrandsAux[i]);
+            }
+            SyncroLocalBrand();
+        }
+
+        private void SyncroBrand()
+        {
+            for (int i = 0; i < Brands.Count; i++)
+            {
+                if (Brands[i] != BrandsAux[i])
+                {
+                    service.SaveBrand(Brands[i]);
+                }
+            }
+        }
+
+        private void SyncroLocalBrand()
+        {
+            for (int i = 0; i < Brands.Count; i++)
+            {
+                if (Brands[i] != BrandsLocal[i])
+                {
+                    service.SaveLocalBrand(Brands[i]);
+                }
             }
         }
 
         private async Task SaveBrand()
         {
+            Console.WriteLine("Paso 1: SaveBrand");
             IsBusy = true;
             Guid idBrand = Guid.NewGuid();
+            Console.WriteLine("Paso 2: SaveBrand");
             BrandModel = new Brand()
             {
                 Name = Name,
@@ -181,18 +202,29 @@ namespace APPValper.ViewModels
                 Founder = Founder,
                 Id = idBrand.ToString()
             };
+
+            Console.WriteLine(BrandModel.Id);
+            Console.WriteLine(BrandModel.Name);
+
             if (string.IsNullOrEmpty(BrandModel.Name))
             {
                 await Application.Current.MainPage.DisplayAlert("Error", "El modelo no puede ser nulo", "Aceptar");
             }
             else
             {
+                Console.WriteLine("Paso 3: SaveBrand");
                 service.SaveBrand(BrandModel);
+                Console.WriteLine("Paso 4: SaveBrand");
                 service.SaveLocalBrand(BrandModel);
+                Console.WriteLine("Paso 5: SaveBrand");
                 Brands.Add(BrandModel);
+                Console.WriteLine("Paso 6: SaveBrand");
                 CleanBrand();
+                Console.WriteLine("Paso 7: SaveBrand");
             }
+            Console.WriteLine("Paso 8: SaveBrand");
             await Task.Delay(2000);
+            Console.WriteLine("Paso 9: SaveBrand");
             IsBusy = false;
         }
 
@@ -204,7 +236,7 @@ namespace APPValper.ViewModels
                 Name = Name,
                 Headquarters = Headquarters,
                 Founder = Founder,
-                Id = IDBrand
+                Id = BrandID
             };
             service.ModifyBrand(BrandModel);
             service.ModifyLocalBrand(BrandModel);
@@ -229,7 +261,7 @@ namespace APPValper.ViewModels
                 Name = Name,
                 Headquarters = Headquarters,
                 Founder = Founder,
-                Id = IDBrand
+                Id = BrandID
             };
             service.DeleteLocalBrand(BrandModel);
             service.DeleteBrand(BrandModel.Id);
@@ -247,8 +279,8 @@ namespace APPValper.ViewModels
             Power = "";
             Color = "";
             Ndoor = 0;
-            IDCar = "";
-            IDBrand = "";
+            IdCar = "";
+            BrandID = "";
             Name = "";
             Headquarters = "";
             Founder = "";
@@ -268,10 +300,34 @@ namespace APPValper.ViewModels
         {
             CarsTask = service.ConsultCar();
             CarsAux = await CarsTask;
+            SyncroCar();
             for (int i = 0; i < CarsAux.Count; i++)
             {
                 Console.WriteLine(CarsAux[i]);
                 Cars.Add(CarsAux[i]);
+            }
+            SyncroLocalCar();
+        }
+
+        private void SyncroCar()
+        {
+            for (int i = 0; i < Cars.Count; i++)
+            {
+                if (Cars[i] != CarsAux[i])
+                {
+                    service.SaveCar(Cars[i]);
+                }
+            }
+        }
+
+        private void SyncroLocalCar()
+        {
+            for (int i = 0; i < Cars.Count; i++)
+            {
+                if (Cars[i] != CarsLocal[i])
+                {
+                    service.SaveLocalCar(Cars[i]);
+                }
             }
         }
 
@@ -285,7 +341,7 @@ namespace APPValper.ViewModels
                 Power = Power,
                 Color = Color,
                 Ndoor = Ndoor,
-                /*BrandID = Id,*/
+                BrandID = BrandID,
                 Id = idCar.ToString()
             };
             if (string.IsNullOrEmpty(CarModel.Model))
@@ -312,8 +368,8 @@ namespace APPValper.ViewModels
                 Power = Power,
                 Color = Color,
                 Ndoor = Ndoor,
-                /*BrandID = Id,*/
-                Id = IDCar
+                BrandID = BrandID,
+                Id = IdCar
             };
             service.ModifyCar(CarModel);
             service.ModifyLocalCar(CarModel);
@@ -340,8 +396,8 @@ namespace APPValper.ViewModels
                 Power = Power,
                 Color = Color,
                 Ndoor = Ndoor,
-                /*BrandID = Id,*/
-                Id = IDCar
+                BrandID = BrandID,
+                Id = IdCar
             };
             service.DeleteLocalCar(CarModel);
             service.DeleteCar(CarModel.Id);
@@ -358,11 +414,40 @@ namespace APPValper.ViewModels
             Power = "";
             Color = "";
             Ndoor = 0;
-            IDBrand = "";
-            IDCar = "";
+            BrandID = "";
+            IdCar = "";
             Name = "";
             Headquarters = "";
             Founder = "";
+        }
+
+        private void ChangeBrandID()
+        {
+            if (BrandID == Brands[BrandsID].Id)
+            {
+                if (BrandsID + 1 >= Brands.Count)
+                {
+                    BrandsID = 0;
+                }
+                else
+                {
+                    BrandsID++;
+                }
+                BrandID = Brands[BrandsID].Id;
+            }
+            else
+            {
+                BrandID = Brands[BrandsID].Id;
+                if (BrandsID + 1 >= Brands.Count)
+                {
+                    BrandsID = 0;
+                }
+                else
+                {
+                    BrandsID++;
+                }
+            }
+
         }
 
     }
