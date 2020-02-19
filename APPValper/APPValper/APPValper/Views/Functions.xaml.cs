@@ -32,7 +32,7 @@ namespace APPValper.Views
                 Context.Power = model.Power;
                 Context.Color = model.Color;
                 Context.Ndoor = model.Ndoor;
-                Context.IDCar = model.Id;
+                Context.IdCar = model.Id;
             }
         }
 
@@ -44,7 +44,7 @@ namespace APPValper.Views
                 Context.Name = model.Name;
                 Context.Headquarters = model.Headquarters;
                 Context.Founder = model.Founder;
-                Context.IDBrand = model.Id;
+                Context.BrandID = model.Id;
             }
         }
     }

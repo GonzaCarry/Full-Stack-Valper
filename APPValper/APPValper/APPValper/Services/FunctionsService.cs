@@ -47,7 +47,7 @@ namespace APPValper.Resources
                 HttpClient client;
                 using (client = new HttpClient())
                 {
-                    client = CreateClient();
+                    client = CreateClient("Brand");
                     HttpResponseMessage response = await client.GetAsync(apiUrl);
                     if (response.IsSuccessStatusCode)
                     {
@@ -81,7 +81,7 @@ namespace APPValper.Resources
                 HttpClient client;
                 using (client = new HttpClient())
                 {
-                    client = CreateClient();
+                    client = CreateClient("Brand");
                     var send = Newtonsoft.Json.JsonConvert.SerializeObject(model,
                             Newtonsoft.Json.Formatting.None,
                             new JsonSerializerSettings
@@ -114,7 +114,7 @@ namespace APPValper.Resources
                 HttpClient client;
                 using (client = new HttpClient())
                 {
-                    client = CreateClient();
+                    client = CreateClient("Brand");
                     var json = JsonConvert.SerializeObject(model);
                     var content = new StringContent(json, Encoding.UTF8, "application/json");
                     Uri apiUrl2 = new Uri(string.Format(apiUrl + "/{0}", model.Id));
@@ -143,7 +143,7 @@ namespace APPValper.Resources
                 HttpClient client;
                 using (client = new HttpClient())
                 {
-                    client = CreateClient();
+                    client = CreateClient("Brand");
                     HttpResponseMessage response = await client.DeleteAsync(apiUrl + "/" + idBrand);
                 }
             }
@@ -168,7 +168,7 @@ namespace APPValper.Resources
                 HttpClient client;
                 using (client = new HttpClient())
                 {
-                    client = CreateClient();
+                    client = CreateClient("Car");
                     HttpResponseMessage response = await client.GetAsync(apiUrl3);
                     if (response.IsSuccessStatusCode)
                     {
@@ -202,7 +202,7 @@ namespace APPValper.Resources
                 HttpClient client;
                 using (client = new HttpClient())
                 {
-                    client = CreateClient();
+                    client = CreateClient("Car");
                     var send = Newtonsoft.Json.JsonConvert.SerializeObject(model,
                             Newtonsoft.Json.Formatting.None,
                             new JsonSerializerSettings
@@ -235,7 +235,7 @@ namespace APPValper.Resources
                 HttpClient client;
                 using (client = new HttpClient())
                 {
-                    client = CreateClient();
+                    client = CreateClient("Car");
                     var json = JsonConvert.SerializeObject(model);
                     var content = new StringContent(json, Encoding.UTF8, "application/json");
                     Uri apiUrl2 = new Uri(string.Format(apiUrl3 + "/{0}", model.Id));
@@ -264,7 +264,7 @@ namespace APPValper.Resources
                 HttpClient client;
                 using (client = new HttpClient())
                 {
-                    client = CreateClient();
+                    client = CreateClient("Car");
                     HttpResponseMessage response = await client.DeleteAsync(apiUrl3 + "/" + idCar);
                 }
             }
@@ -282,13 +282,20 @@ namespace APPValper.Resources
             }
         }
 
-        private HttpClient CreateClient()
+        private HttpClient CreateClient(String type)
         {
             HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri(apiUrl);
+            if (type.Equals("Brand"))
+            {
+                client.BaseAddress = new Uri(apiUrl);
+            }
+            else
+            {
+                client.BaseAddress = new Uri(apiUrl3);
+            }
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", ConfigurationManager.AppSettings["token"].ToString());
+            //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", ConfigurationManager.AppSettings["token"].ToString());
             client.Timeout = TimeSpan.FromMinutes(10);
             client.Timeout = new TimeSpan(0, 0, 0, 0, -1);
             return client;

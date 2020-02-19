@@ -22,7 +22,6 @@ namespace APPValper.Models
 
         private string idCar;
 
-        [PrimaryKey]
         public string IdCar
         {
             get { return idCar; }

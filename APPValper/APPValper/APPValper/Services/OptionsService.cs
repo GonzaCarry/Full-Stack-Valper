@@ -63,7 +63,7 @@ namespace APPValper.Services
                     }
                 }
             }
-            catch (HttpRequestException)
+            catch (Exception)
             {
                 return false;
             }
