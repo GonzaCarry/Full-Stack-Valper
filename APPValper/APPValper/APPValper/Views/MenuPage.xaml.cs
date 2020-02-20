@@ -1,4 +1,5 @@
 ﻿using APPValper.Models;
+using APPValper.Services;
 using APPValper.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -13,13 +14,12 @@ namespace APPValper.Views
     [DesignTimeVisible(false)]
     public partial class MenuPage : ContentPage
     {
+        OptionsService service = new OptionsService();
         MainPage RootPage { get => Application.Current.MainPage as MainPage; }
         private static List<HomeMenuItem> menuItems { get; set; }
-        public static bool logged { get; set; } = false;
         public MenuPage()
         {
             InitializeComponent();
-            User.Users.Add(new User("test", "test", "test", false, false));
             FillList();
             Update();
         }
@@ -49,6 +49,7 @@ namespace APPValper.Views
 
         public void Update()
         {
+            var user = service.ConsultUser();
             ListViewMenu.ItemsSource = menuItems;
             ListViewMenu.SelectedItem = menuItems[0];
             ListViewMenu.ItemSelected += async (sender, e) =>
@@ -57,7 +58,7 @@ namespace APPValper.Views
                     return;
                 if (e.SelectedItemIndex == 1)
                 {
-                    if (User.Users[0].Logged)
+                    if (user.Logged)
                     {
                         var id = (int)((HomeMenuItem)e.SelectedItem).Id;
                         await RootPage.NavigateFromMenu(id);

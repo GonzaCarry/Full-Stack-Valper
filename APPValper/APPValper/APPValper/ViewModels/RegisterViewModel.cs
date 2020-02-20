@@ -20,7 +20,6 @@ namespace APPValper.ViewModels
         public string Password2 { get; set; }
         INavigation Navigation;
         private bool admin = false;
-        private bool registered = false;
 
         private string LanguageSelected;
         public Language Language { get; set; }
@@ -52,7 +51,7 @@ namespace APPValper.ViewModels
                     ConfirmPasswordText = "Confirme la contraseña";
                     RegisterText = "Registrarse";
                     AdmindText = "¿Quieres ser administrador?";
-    }
+                }
                 else
                 {
                     EmailText = "E-mail";
@@ -117,21 +116,15 @@ namespace APPValper.ViewModels
                             }
                             else
                             {
-                                foreach(User user in User.Users)
-                                {
-                                    if (Email.Equals(user.Email))
-                                    {
-                                        registered = true;
-                                        await Application.Current.MainPage.DisplayAlert("Error", "Ese email ya ha sido registrado", "Aceptar");
-                                    }
-                                }
-                                if (!registered)
-                                {
-                                    User.Users[0] = new User(Email, Username, Password, false, admin);
-                                    await Application.Current.MainPage.DisplayAlert("Felicidades", "Se ha registrado satisfactoriamente", "Aceptar");
-                                    await Navigation.PopToRootAsync();
-                                }
-                                registered = false;
+                                var user = new User();
+                                user.Id = 0;
+                                user.Email = Email;
+                                user.Name = Username;
+                                user.Password = Password;
+                                user.Logged = false;
+                                service.SaveUser(user);
+                                await Application.Current.MainPage.DisplayAlert("Felicidades", "Se ha registrado satisfactoriamente", "Aceptar");
+                                await Navigation.PopToRootAsync();
                             }
                         }
                     }

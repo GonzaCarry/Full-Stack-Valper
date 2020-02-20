@@ -22,6 +22,7 @@ namespace APPValper.ViewModels
         private int logging;
         private bool logged = false;
         private User userAux;
+        private User user;
 
         private string LanguageSelected;
         public string EmailText { get; set; }
@@ -65,6 +66,7 @@ namespace APPValper.ViewModels
         {
             Url = service2.ConsultLocal().Url;
             LanguageSelected = service2.ConsultLanguage().Name;
+            user = service2.ConsultUser();
         }
 
 
@@ -92,33 +94,25 @@ namespace APPValper.ViewModels
                 }
                 else
                 {
-                    foreach (User user in User.Users)
+                    logging = 0;
+                    if (Email.Equals(user.Email))
                     {
-                        logging = 0;
-                        if (Email.Equals(user.Email))
-                        {
-                            logging++;
-                        }
-                        if (Password.Equals(user.Email))
-                        {
-                            logging++;
-                        }
-                        if (logging == 2)
-                        {
-                            logged = true;
-                            userAux = user;
-                        }
-                        else
-                        {
-                            await Application.Current.MainPage.DisplayAlert("Error", "Usuario incorrecto", "Aceptar");
-                        }
+                        logging++;
                     }
-                    if (logged)
+                    if (Password.Equals(user.Password))
                     {
-                        User.Users[0] = userAux;
-                        User.Users[0].Logged = true;
+                        logging++;
+                    }
+                    if (logging == 2)
+                    {
+                        user.Logged = true;
+                        Console.WriteLine("hola" + user.Logged);
                         await Application.Current.MainPage.DisplayAlert("Felicidades", "Se ha conectado correctamente", "Aceptar");
                         await Navigation.PopToRootAsync();
+                    }
+                    else
+                    {
+                        await Application.Current.MainPage.DisplayAlert("Error", "Usuario incorrecto", "Aceptar");
                     }
                 }
             }

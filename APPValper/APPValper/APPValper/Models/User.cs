@@ -11,16 +11,27 @@ using SQLite;
 
 namespace APPValper.Models
 {
-    class User
+    public partial class User : INotifyPropertyChanged
     {
 
-        public User(String name, String email, String password, bool logged, bool admin)
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public void OnPropertyChanged([CallerMemberName]string model = "")
         {
-            this.name = name;
-            this.email = email;
-            this.password = password;
-            this.logged = logged;
-            this.admin = admin;
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(model));
+        }
+
+        private int id;
+
+        [PrimaryKey]
+        public int Id
+        {
+            get { return id; }
+            set
+            {
+                id = value;
+                OnPropertyChanged();
+            }
         }
 
         private string name;
@@ -28,7 +39,9 @@ namespace APPValper.Models
         public string Name
         {
             get { return name; }
-            set { name = value; }
+            set { name = value;
+                OnPropertyChanged();
+            }
         }
 
         private string email;
@@ -36,7 +49,9 @@ namespace APPValper.Models
         public string Email
         {
             get { return email; }
-            set { email = value; }
+            set { email = value;
+                OnPropertyChanged();
+            }
         }
 
 
@@ -45,7 +60,9 @@ namespace APPValper.Models
         public string Password
         {
             get { return password; }
-            set { password = value; }
+            set { password = value;
+                OnPropertyChanged();
+            }
         }
 
         private bool logged;
@@ -53,7 +70,9 @@ namespace APPValper.Models
         public bool Logged
         {
             get { return logged; }
-            set { logged = value; }
+            set { logged = value;
+                OnPropertyChanged();
+            }
         }
 
         private bool admin;
@@ -61,17 +80,10 @@ namespace APPValper.Models
         public bool Admin
         {
             get { return admin; }
-            set { admin = value; }
+            set { admin = value;
+                OnPropertyChanged();
+            }
         }
-
-        private static List<User> users = new List<User>();
-
-        public static List<User> Users
-        {
-            get { return users; }
-            set { users = value; }
-        }
-
 
     }
 }

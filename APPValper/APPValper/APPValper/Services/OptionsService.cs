@@ -13,6 +13,8 @@ namespace APPValper.Services
         private Connection connection { get; set; }
         private Language language { get; set; }
 
+        private User user { get; set; }
+
         public OptionsService()
         {
             if (connection == null)
@@ -37,6 +39,15 @@ namespace APPValper.Services
                 language = data.GetLanguage();
             }
             return language;
+        }
+
+        public User ConsultUser()
+        {
+            using (var data = new DataAccess())
+            {
+                user = data.GetUser();
+            }
+            return user;
         }
 
         public async System.Threading.Tasks.Task<bool> SaveLocalAsync(Connection con)
@@ -66,6 +77,14 @@ namespace APPValper.Services
             catch (Exception)
             {
                 return false;
+            }
+        }
+
+        public void SaveUser(User user)
+        {
+            using (var data = new DataAccess())
+            {
+                data.InsertUser(user);
             }
         }
 

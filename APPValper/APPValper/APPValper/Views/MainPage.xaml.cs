@@ -36,13 +36,6 @@ namespace APPValper.Views
                     case (int)MenuItemType.EditUser:
                         MenuPages.Add(id, new NavigationPage(new EditUser()));
                         break;
-                    case (int)MenuItemType.Help:
-                        var browser = new WebView
-                        {
-                            Source = "http://xamarin.com"
-                        };
-                        browser.GoForward();
-                        break;
                 }
             }
 

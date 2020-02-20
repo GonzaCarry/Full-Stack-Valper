@@ -23,6 +23,7 @@ namespace APPValper.Services
             connection.CreateTable<Language>();
             connection.CreateTable<Car>();
             connection.CreateTable<Brand>();
+            connection.CreateTable<User>();
         }
 
         public void InsertCar(Car car)
@@ -134,6 +135,35 @@ namespace APPValper.Services
                 connection.Delete(connection.Table<Connection>().FirstOrDefault(c => c.Id.Equals(0)));
             }
             connection.Insert(con);
+        }
+
+        public void InsertUser(User user)
+        {
+            if (connection.Table<User>().ToList().Count > 0)
+            {
+                connection.Delete(connection.Table<User>().FirstOrDefault(c => c.Id.Equals(0)));
+            }
+            connection.Insert(user);
+        }
+
+        public void ModifyUser(User user)
+        {
+            connection.Update(user);
+        }
+
+        public void DeleteUser(User user)
+        {
+            connection.Delete(user);
+        }
+
+        public User GetUser()
+        {
+            return connection.Table<User>().FirstOrDefault(c => c.Id.Equals(0));
+        }
+
+        public List<User> GetUsers()
+        {
+            return connection.Table<User>().OrderBy(c => c.Name).ToList();
         }
 
         public void Dispose()

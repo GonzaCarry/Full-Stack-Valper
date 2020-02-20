@@ -23,8 +23,6 @@ namespace APPValper.ViewModels
         public Command SaveCommand { get; set; }
         public Command HelpCommand { get; set; }
         public Command ExitCommand { get; set; }
-        //public Frame SpanishFrame { get; set; }
-        //public Frame EnglishFrame { get; set; }
 
         public Command OptionsCommand { get; set; }
         public Command SpanishCommand { get; set; }
