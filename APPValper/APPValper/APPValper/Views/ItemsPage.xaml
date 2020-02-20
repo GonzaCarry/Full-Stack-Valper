@@ -25,6 +25,7 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
                 <StackLayout Grid.Row="1" Padding="15,20">
@@ -40,6 +41,10 @@
                 </Frame>
 
                 <StackLayout Grid.Row="3" Padding="15,10">
+                    <Button Command="{Binding HelpCommand}" Text="{Binding ButtonHelpText}" BackgroundColor="white" BorderRadius="20" TextColor="#1E90FF" />
+                </StackLayout>
+
+                <StackLayout Grid.Row="4" Padding="15,10">
                     <Button Command="{Binding ExitCommand}" Text="{Binding ButtonExitText}" BackgroundColor="white" BorderRadius="20" TextColor="#1E90FF" />
                 </StackLayout>
 

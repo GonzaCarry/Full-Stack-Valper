@@ -159,22 +159,19 @@ namespace APPValper.ViewModels
         {
             BrandsTask = service.ConsultBrand();
             BrandsAux = await BrandsTask;
-            SyncroBrand();
             for (int i = 0; i < BrandsAux.Count; i++)
             {
                 Brands.Add(BrandsAux[i]);
             }
             SyncroLocalBrand();
+            SyncroBrand();
         }
 
         private void SyncroBrand()
         {
             for (int i = 0; i < Brands.Count; i++)
             {
-                if (Brands[i] != BrandsAux[i])
-                {
-                    service.SaveBrand(Brands[i]);
-                }
+                service.SaveBrand(Brands[i]);
             }
         }
 
@@ -182,10 +179,7 @@ namespace APPValper.ViewModels
         {
             for (int i = 0; i < Brands.Count; i++)
             {
-                if (Brands[i] != BrandsLocal[i])
-                {
-                    service.SaveLocalBrand(Brands[i]);
-                }
+                service.SaveLocalBrand(Brands[i]);
             }
         }
 
@@ -206,13 +200,13 @@ namespace APPValper.ViewModels
             }
             else
             {
+                service.SaveLocalBrand(BrandModel);
+                Brands.Add(BrandModel);
+                CleanBrand();
                 if (await service.CheckConnection())
                 {
                     service.SaveBrand(BrandModel);
                 }
-                service.SaveLocalBrand(BrandModel);
-                Brands.Add(BrandModel);
-                CleanBrand();
             }
             await Task.Delay(2000);
             IsBusy = false;
@@ -228,10 +222,6 @@ namespace APPValper.ViewModels
                 Founder = Founder,
                 Id = BrandID
             };
-            if (await service.CheckConnection())
-            {
-                service.ModifyBrand(BrandModel);
-            }
             service.ModifyLocalBrand(BrandModel);
             var item = Brands.FirstOrDefault(i => i.Id == BrandModel.Id);
             if (item != null)
@@ -242,6 +232,10 @@ namespace APPValper.ViewModels
                 item.Id = BrandModel.Id;
             }
             CleanBrand();
+            if (await service.CheckConnection())
+            {
+                service.ModifyBrand(BrandModel);
+            }
             await Task.Delay(2000);
             IsBusy = false;
         }
@@ -257,13 +251,13 @@ namespace APPValper.ViewModels
                 Id = BrandID
             };
             service.DeleteLocalBrand(BrandModel);
+            var item = Brands.FirstOrDefault(i => i.Id == BrandModel.Id);
+            Brands.Remove(item);
+            CleanBrand();
             if (await service.CheckConnection())
             {
                 service.DeleteBrand(BrandModel.Id);
             }
-            var item = Brands.FirstOrDefault(i => i.Id == BrandModel.Id);
-            Brands.Remove(item);
-            CleanBrand();
             await Task.Delay(2000);
             IsBusy = false;
         }
@@ -346,13 +340,13 @@ namespace APPValper.ViewModels
             }
             else
             {
+                service.SaveLocalCar(CarModel);
+                Cars.Add(CarModel);
+                CleanCar();
                 if (await service.CheckConnection())
                 {
                     service.SaveCar(CarModel);
                 }
-                service.SaveLocalCar(CarModel);
-                Cars.Add(CarModel);
-                CleanCar();
             }
             await Task.Delay(2000);
             IsBusy = false;
@@ -370,10 +364,6 @@ namespace APPValper.ViewModels
                 BrandID = BrandID,
                 Id = IdCar
             };
-            if (await service.CheckConnection())
-            {
-                service.ModifyCar(CarModel);
-            }
             service.ModifyLocalCar(CarModel);
             var item = Cars.FirstOrDefault(i => i.Id == CarModel.Id);
             if (item != null)
@@ -385,6 +375,10 @@ namespace APPValper.ViewModels
                 item.Id = CarModel.Id;
             }
             CleanCar();
+            if (await service.CheckConnection())
+            {
+                service.ModifyCar(CarModel);
+            }
             await Task.Delay(2000);
             IsBusy = false;
         }
@@ -402,13 +396,13 @@ namespace APPValper.ViewModels
                 Id = IdCar
             };
             service.DeleteLocalCar(CarModel);
+            var item = Cars.FirstOrDefault(i => i.Id == CarModel.Id);
+            Cars.Remove(item);
+            CleanCar();
             if (await service.CheckConnection())
             {
                 service.DeleteCar(CarModel.Id);
             }
-            var item = Cars.FirstOrDefault(i => i.Id == CarModel.Id);
-            Cars.Remove(item);
-            CleanCar();
             await Task.Delay(2000);
             IsBusy = false;
         }

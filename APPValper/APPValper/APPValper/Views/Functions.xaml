@@ -84,7 +84,7 @@
                                 <Frame BackgroundColor="White" BorderColor="#F0F0F0" Padding="5" Margin="0,0,0,5" HasShadow="False">
                                     <Grid HeightRequest="50" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
                                         <Label Text="{Binding Name}" TextColor="#757575" FontSize="25" VerticalOptions="Center" Margin="0,-5,0,0"/>
-                                        <Image Grid.Column="1" Source="{Binding Picture}" WidthRequest="38" HeightRequest="38" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                        <Label Grid.Column="1" Text="{Binding Headquarters}" TextColor="White" FontSize="25" VerticalOptions="Center" Margin="5,-5,0,0"/>
                                         <StackLayout Grid.Column="2" Orientation="Horizontal" Margin="20,0" HorizontalOptions="End" VerticalOptions="Center">
                                             <Label Text="{Binding Founder}" TextColor="Black" FontSize="20" FontAttributes="Bold" VerticalOptions="Center"/>
                                         </StackLayout>
@@ -94,25 +94,6 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-
-                <!--<ListView x:Name="LvBrands" ItemsSource="{Binding Brands}" SeparatorVisibility="None"
-                  Grid.Row="3" Margin="20,20" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-                    <ListView.ItemTemplate>
-                        <DataTemplate >
-                            <ViewCell>
-                                <Frame BackgroundColor="White" BorderColor="#F0F0F0" Padding="5" Margin="0,0,0,5" HasShadow="False">
-                                    <Grid HeightRequest="50" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
-                                        <Label Text="{Binding Name}" TextColor="White" FontSize="25" VerticalOptions="Center" Margin="5,-5,0,0"/>
-                                        <Label Grid.Column="1" Text="{Binding Headquarters}" TextColor="White" FontSize="25" VerticalOptions="Center" Margin="5,-5,0,0"/>
-                                        <StackLayout Grid.Column="2" Orientation="Horizontal" Margin="-25,0" HorizontalOptions="End" VerticalOptions="Center">
-                                            <Label Text="{Binding Founder}" TextColor="White" FontSize="25" FontAttributes="Bold" VerticalOptions="Center"/>
-                                        </StackLayout>
-                                    </Grid>
-                                </Frame>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>-->
 
             </Grid>
         </Grid>
@@ -144,7 +125,7 @@
                     <Entry Text="{Binding Model}" Placeholder="{Binding ModelNameText}" PlaceholderColor="White"/>
                     <Entry Text="{Binding Power}" Placeholder="{Binding PowerText}" PlaceholderColor="White" />
                     <Entry Text="{Binding Color}" Placeholder="{Binding ColorText}" PlaceholderColor="White" />
-                    <Entry Text="{Binding NDoor}" Placeholder="{Binding DoorsText}" PlaceholderColor="White" />
+                    <Entry Text="{Binding Ndoor}" Placeholder="{Binding DoorsText}" PlaceholderColor="White" />
                 </StackLayout>
                 <Frame Grid.Row="2" HasShadow="True" CornerRadius="10" Margin="20,0,20,0" Padding="0" HeightRequest="120" VerticalOptions="Start" >
                     <Grid HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
@@ -194,7 +175,7 @@
                 </Frame>
 
                 <Label Text="{Binding IDCar}" TextColor="#7D7D7D" FontSize="11" HorizontalOptions="Center"/>
-                
+
                 <ListView x:Name="LvCars" ItemsSource="{Binding Cars}" SeparatorVisibility="None"
                   Grid.Row="3" Margin="20,0" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
                     <ListView.ItemTemplate>
@@ -213,25 +194,6 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-                
-                <!--<ListView x:Name="LvCars" ItemsSource="{Binding Cars}" SeparatorVisibility="None"
-                  Grid.Row="3" Margin="20,20" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-                    <ListView.ItemTemplate>
-                        <DataTemplate >
-                            <ViewCell>
-                                <Frame BackgroundColor="White" BorderColor="#F0F0F0" Padding="5" Margin="0,0,0,5" HasShadow="False">
-                                    <Grid HeightRequest="50" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
-                                        <Label Text="{Binding Model}" TextColor="White" FontSize="25" VerticalOptions="Center" Margin="5,-5,0,0"/>
-                                        <Label Grid.Column="1" Text="{Binding Power}" TextColor="White" FontSize="25" VerticalOptions="Center" Margin="5,-5,0,0"/>
-                                        <StackLayout Grid.Column="2" Orientation="Horizontal" Margin="-25,0" HorizontalOptions="End" VerticalOptions="Center">
-                                            <Label Text="{Binding Color}" TextColor="White" FontSize="25" FontAttributes="Bold" VerticalOptions="Center"/>
-                                        </StackLayout>
-                                    </Grid>
-                                </Frame>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>-->
 
             </Grid>
         </Grid>

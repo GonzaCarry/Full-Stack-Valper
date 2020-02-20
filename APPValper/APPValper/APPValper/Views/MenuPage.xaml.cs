@@ -26,8 +26,6 @@ namespace APPValper.Views
 
         public static void FillList()
         {
-            Console.WriteLine("pasaxd");
-
             menuItems = new List<HomeMenuItem>
                 {
                     new HomeMenuItem {Id = MenuItemType.Home, Title="Home" },

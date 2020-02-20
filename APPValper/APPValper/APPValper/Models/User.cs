@@ -1,6 +1,13 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Globalization;
+using System.Runtime.CompilerServices;
 using System.Text;
+using Xamarin.Forms;
+using SQLite;
 
 namespace APPValper.Models
 {

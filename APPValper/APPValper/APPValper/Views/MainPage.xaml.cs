@@ -36,23 +36,27 @@ namespace APPValper.Views
                     case (int)MenuItemType.EditUser:
                         MenuPages.Add(id, new NavigationPage(new EditUser()));
                         break;
-                    case (int)MenuItemType.Options:
-                        MenuPages.Add(id, new NavigationPage(new Options()));
+                    case (int)MenuItemType.Help:
+                        var browser = new WebView
+                        {
+                            Source = "http://xamarin.com"
+                        };
+                        browser.GoForward();
                         break;
                 }
             }
 
             var newPage = MenuPages[id];
 
-            if (newPage != null && Detail != newPage)
-            {
-                Detail = newPage;
+            //if (newPage != null && Detail != newPage)
+            //{
+            //    Detail = newPage;
 
-                if (Device.RuntimePlatform == Device.Android)
-                    await Task.Delay(100);
+            //    if (Device.RuntimePlatform == Device.Android)
+            //        await Task.Delay(100);
 
-                IsPresented = false;
-            }
+            //    IsPresented = false;
+            //}
         }
     }
 }

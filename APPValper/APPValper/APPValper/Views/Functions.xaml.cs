@@ -33,6 +33,7 @@ namespace APPValper.Views
                 Context.Color = model.Color;
                 Context.Ndoor = model.Ndoor;
                 Context.IdCar = model.Id;
+                Context.BrandID = model.BrandID;
             }
         }
 

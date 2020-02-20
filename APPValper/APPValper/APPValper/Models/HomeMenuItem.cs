@@ -8,7 +8,7 @@ namespace APPValper.Models
     {
         Home,
         EditUser,
-        Options
+        Help
     }
     public class HomeMenuItem
     {

@@ -21,6 +21,7 @@ namespace APPValper.ViewModels
         public Command CRUDCommand { get; set; }
         public Command ChangeUserCommand { get; set; }
         public Command SaveCommand { get; set; }
+        public Command HelpCommand { get; set; }
         public Command ExitCommand { get; set; }
         //public Frame SpanishFrame { get; set; }
         //public Frame EnglishFrame { get; set; }
@@ -40,6 +41,7 @@ namespace APPValper.ViewModels
         public string LabelTitle { get; set; }
         public string LabelDescription { get; set; }
         public string ButtonExitText { get; set; }
+        public string ButtonHelpText { get; set; }
         public string TitleSettings { get; set; }
         public string TitleHome { get; set; }
         public string UrlText { get; set; }
@@ -57,6 +59,7 @@ namespace APPValper.ViewModels
             OptionsCommand = new Command(async () => await Options(), () => !IsBusy);
             CRUDCommand = new Command(async () => await CRUD(), () => !IsBusy);
             ChangeUserCommand = new Command(async () => await ChangeUser(), () => !IsBusy);
+            HelpCommand = new Command(Help);
             ExitCommand = new Command(Exit);
             Items = new ObservableCollection<Item>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
@@ -80,6 +83,7 @@ namespace APPValper.ViewModels
                     ButtonLoginText = "Conectarse";
                     LabelTitle = "Valper Soluciones Y Mantenimientos, S.L.";
                     LabelDescription = "Asesoramiento, suministro, mantenimiento y soporte de sistemas informáticos. Desarrollo de Software a medida. Comercialización de Software para el sector de la automoción. Ya existe acuerdo de distribución y mantenimiento con empresa multinacional. Desarrollo de aplicaciones de integración para el software anteriormente mencionado para ser distribuidos a nivel nacional.";
+                    ButtonHelpText = "Ayuda";
                     ButtonExitText = "Salir";
                     TitleSettings = "Opciones";
                     TitleHome = "Página principal";
@@ -93,6 +97,7 @@ namespace APPValper.ViewModels
                     ButtonLoginText = "Login";
                     LabelTitle = "Valper Solutions and Maintenance, S.L.";
                     LabelDescription = "Advice, supply, maintenance and support of computer systems. Custom software development. Software Marketing for the automotive sector. There is already a distribution and maintenance agreement with a multinational company. Development of integration applications for the aforementioned software to be distributed nationwide.";
+                    ButtonHelpText = "Help";
                     ButtonExitText = "Exit";
                     TitleSettings = "Settings";
                     TitleHome = "Home";
@@ -218,6 +223,11 @@ namespace APPValper.ViewModels
         private async Task ChangeUser()
         {
             await Navigation.PushAsync(new Login());
+        }
+
+        private void Help()
+        {
+            Device.OpenUri(new Uri(Url + "/ManualDeAyuda/Index.html"));
         }
 
         private void Exit()
