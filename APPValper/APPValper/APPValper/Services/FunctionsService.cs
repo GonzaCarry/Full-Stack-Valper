@@ -63,6 +63,28 @@ namespace APPValper.Resources
             }
         }
 
+        public async System.Threading.Tasks.Task<bool> CheckConnection()
+        {
+            try
+            {
+                HttpClient client;
+                using (client = new HttpClient())
+                {
+                    client = CreateClient("Brand");
+                    HttpResponseMessage response = await client.GetAsync(apiUrl);
+                    if (response.IsSuccessStatusCode)
+                    {
+                        return true;
+                    }
+                    return false;
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
         public ObservableCollection<Brand> ConsultLocalBrand()
         {
             using (var data = new DataAccess())

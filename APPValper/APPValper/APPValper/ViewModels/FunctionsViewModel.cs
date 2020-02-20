@@ -21,6 +21,8 @@ namespace APPValper.ViewModels
         private ObservableCollection<Brand> BrandsAux { get; set; }
         public ObservableCollection<Brand> Brands { get; set; }
 
+        public string Url { get; private set; }
+
         private ObservableCollection<Car> CarsLocal { get; set; }
         private Task<ObservableCollection<Car>> CarsTask { get; set; }
         private ObservableCollection<Car> CarsAux { get; set; }
@@ -155,7 +157,6 @@ namespace APPValper.ViewModels
 
         private async Task ListViewAsyncBrand()
         {
-            Brands = new ObservableCollection<Brand>();
             BrandsTask = service.ConsultBrand();
             BrandsAux = await BrandsTask;
             SyncroBrand();
@@ -190,10 +191,8 @@ namespace APPValper.ViewModels
 
         private async Task SaveBrand()
         {
-            Console.WriteLine("Paso 1: SaveBrand");
             IsBusy = true;
             Guid idBrand = Guid.NewGuid();
-            Console.WriteLine("Paso 2: SaveBrand");
             BrandModel = new Brand()
             {
                 Name = Name,
@@ -201,29 +200,21 @@ namespace APPValper.ViewModels
                 Founder = Founder,
                 Id = idBrand.ToString()
             };
-
-            Console.WriteLine(BrandModel.Id);
-            Console.WriteLine(BrandModel.Name);
-
             if (string.IsNullOrEmpty(BrandModel.Name))
             {
                 await Application.Current.MainPage.DisplayAlert("Error", "El modelo no puede ser nulo", "Aceptar");
             }
             else
             {
-                Console.WriteLine("Paso 3: SaveBrand");
-                service.SaveBrand(BrandModel);
-                Console.WriteLine("Paso 4: SaveBrand");
+                if (await service.CheckConnection())
+                {
+                    service.SaveBrand(BrandModel);
+                }
                 service.SaveLocalBrand(BrandModel);
-                Console.WriteLine("Paso 5: SaveBrand");
                 Brands.Add(BrandModel);
-                Console.WriteLine("Paso 6: SaveBrand");
                 CleanBrand();
-                Console.WriteLine("Paso 7: SaveBrand");
             }
-            Console.WriteLine("Paso 8: SaveBrand");
             await Task.Delay(2000);
-            Console.WriteLine("Paso 9: SaveBrand");
             IsBusy = false;
         }
 
@@ -237,7 +228,10 @@ namespace APPValper.ViewModels
                 Founder = Founder,
                 Id = BrandID
             };
-            service.ModifyBrand(BrandModel);
+            if (await service.CheckConnection())
+            {
+                service.ModifyBrand(BrandModel);
+            }
             service.ModifyLocalBrand(BrandModel);
             var item = Brands.FirstOrDefault(i => i.Id == BrandModel.Id);
             if (item != null)
@@ -263,7 +257,10 @@ namespace APPValper.ViewModels
                 Id = BrandID
             };
             service.DeleteLocalBrand(BrandModel);
-            service.DeleteBrand(BrandModel.Id);
+            if (await service.CheckConnection())
+            {
+                service.DeleteBrand(BrandModel.Id);
+            }
             var item = Brands.FirstOrDefault(i => i.Id == BrandModel.Id);
             Brands.Remove(item);
             CleanBrand();
@@ -349,7 +346,10 @@ namespace APPValper.ViewModels
             }
             else
             {
-                service.SaveCar(CarModel);
+                if (await service.CheckConnection())
+                {
+                    service.SaveCar(CarModel);
+                }
                 service.SaveLocalCar(CarModel);
                 Cars.Add(CarModel);
                 CleanCar();
@@ -370,7 +370,10 @@ namespace APPValper.ViewModels
                 BrandID = BrandID,
                 Id = IdCar
             };
-            service.ModifyCar(CarModel);
+            if (await service.CheckConnection())
+            {
+                service.ModifyCar(CarModel);
+            }
             service.ModifyLocalCar(CarModel);
             var item = Cars.FirstOrDefault(i => i.Id == CarModel.Id);
             if (item != null)
@@ -399,7 +402,10 @@ namespace APPValper.ViewModels
                 Id = IdCar
             };
             service.DeleteLocalCar(CarModel);
-            service.DeleteCar(CarModel.Id);
+            if (await service.CheckConnection())
+            {
+                service.DeleteCar(CarModel.Id);
+            }
             var item = Cars.FirstOrDefault(i => i.Id == CarModel.Id);
             Cars.Remove(item);
             CleanCar();
