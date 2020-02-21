@@ -150,40 +150,43 @@ namespace APPValper.ViewModels
             BrandsAux = service.ConsultLocalBrand();
             for (int i = 0; i < BrandsAux.Count; i++)
             {
-                Brands.Add(BrandsAux[i]);
-                Console.WriteLine("local" + Brands[i].Id);
+                BrandsLocal.Add(BrandsAux[i]);
             }
-            BrandsLocal = Brands;
-            SyncroLocalBrandAsync();
+            Brands = BrandsLocal;
         }
 
         private async Task ListViewAsyncBrand()
         {
             BrandsTask = service.ConsultBrand();
             BrandsAux = await BrandsTask;
+            SyncroLocalBrandAsync();
+            SyncroBrand();
+            if (Brands[0].Id != null)
+            {
+                Brands = new ObservableCollection<Brand>();
+            }
+            BrandsTask = service.ConsultBrand();
+            BrandsAux = await BrandsTask;
             for (int i = 0; i < BrandsAux.Count; i++)
             {
+                Console.WriteLine("prueba" + BrandsAux[i].Id);
                 Brands.Add(BrandsAux[i]);
-                Console.WriteLine("global" + Brands[i].Id);
             }
-            SyncroBrand();
         }
 
         private void SyncroBrand()
         {
             for (int i = 0; i < BrandsLocal.Count; i++)
             {
-                if (BrandsLocal[i].Id != Brands[i].Id)
-                    service.SaveBrand(BrandsLocal[i]);
+                service.SaveBrand(BrandsLocal[i]);
             }
         }
 
         private async Task SyncroLocalBrandAsync()
         {
-            for (int i = 0; i < (await service.ConsultBrand()).Count; i++)
+            for (int i = 0; i < BrandsAux.Count; i++)
             {
-                if (BrandsLocal[i].Id != Brands[i].Id)
-                    service.SaveLocalBrand(Brands[i]);
+                service.SaveLocalBrand(BrandsAux[i]);
             }
         }
 
@@ -283,45 +286,46 @@ namespace APPValper.ViewModels
         private void ListViewCar()
         {
             Cars = new ObservableCollection<Car>();
+            CarsLocal = new ObservableCollection<Car>();
             CarsAux = service.ConsultLocalCar();
             for (int i = 0; i < CarsAux.Count; i++)
             {
-                Cars.Add(CarsAux[i]);
+                CarsLocal.Add(CarsAux[i]);
             }
+            Cars = CarsLocal;
         }
 
         private async Task ListViewAsyncCar()
         {
             CarsTask = service.ConsultCar();
             CarsAux = await CarsTask;
+            SyncroLocalCarAsync();
             SyncroCar();
+            if (Cars[0].Id != null)
+            {
+                Cars = new ObservableCollection<Car>();
+            }
+            CarsTask = service.ConsultCar();
+            CarsAux = await CarsTask;
             for (int i = 0; i < CarsAux.Count; i++)
             {
-                Console.WriteLine(CarsAux[i]);
                 Cars.Add(CarsAux[i]);
             }
-            SyncroLocalCar();
         }
 
         private void SyncroCar()
         {
-            for (int i = 0; i < Cars.Count; i++)
+            for (int i = 0; i < CarsLocal.Count; i++)
             {
-                if (Cars[i] != CarsAux[i])
-                {
-                    service.SaveCar(Cars[i]);
-                }
+                service.SaveCar(CarsLocal[i]);
             }
         }
 
-        private void SyncroLocalCar()
+        private async Task SyncroLocalCarAsync()
         {
-            for (int i = 0; i < Cars.Count; i++)
+            for (int i = 0; i < CarsAux.Count; i++)
             {
-                if (Cars[i] != CarsLocal[i])
-                {
-                    service.SaveLocalCar(Cars[i]);
-                }
+                service.SaveLocalCar(CarsAux[i]);
             }
         }
 
