@@ -106,7 +106,8 @@ namespace APPValper.ViewModels
                     if (logging == 2)
                     {
                         user.Logged = true;
-                        Console.WriteLine("hola" + user.Logged);
+                        service2.SaveUser(user);
+                        Console.WriteLine("logging" + service2.ConsultUser().Logged);
                         await Application.Current.MainPage.DisplayAlert("Felicidades", "Se ha conectado correctamente", "Aceptar");
                         await Navigation.PopToRootAsync();
                     }
