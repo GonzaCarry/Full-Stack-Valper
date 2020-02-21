@@ -41,15 +41,15 @@ namespace APPValper.Views
 
             var newPage = MenuPages[id];
 
-            //if (newPage != null && Detail != newPage)
-            //{
-            //    Detail = newPage;
+            if (newPage != null && Detail != newPage)
+            {
+                Detail = newPage;
 
-            //    if (Device.RuntimePlatform == Device.Android)
-            //        await Task.Delay(100);
+                if (Device.RuntimePlatform == Device.Android)
+                    await Task.Delay(100);
 
-            //    IsPresented = false;
-            //}
+                IsPresented = false;
+            }
         }
     }
 }

@@ -13,10 +13,11 @@ namespace APPValper.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class EditUser : ContentPage
     {
-        EditUserViewModel Context = new EditUserViewModel();
+        EditUserViewModel Context;
         public EditUser()
         {
             InitializeComponent();
+            Context = new EditUserViewModel(Navigation);
             BindingContext = Context;
         }
     }

@@ -151,8 +151,10 @@ namespace APPValper.ViewModels
             for (int i = 0; i < BrandsAux.Count; i++)
             {
                 Brands.Add(BrandsAux[i]);
-                BrandsLocal.Add(BrandsAux[i]);
+                Console.WriteLine("local" + Brands[i].Id);
             }
+            BrandsLocal = Brands;
+            SyncroLocalBrandAsync();
         }
 
         private async Task ListViewAsyncBrand()
@@ -162,24 +164,26 @@ namespace APPValper.ViewModels
             for (int i = 0; i < BrandsAux.Count; i++)
             {
                 Brands.Add(BrandsAux[i]);
+                Console.WriteLine("global" + Brands[i].Id);
             }
-            SyncroLocalBrand();
             SyncroBrand();
         }
 
         private void SyncroBrand()
         {
-            for (int i = 0; i < Brands.Count; i++)
+            for (int i = 0; i < BrandsLocal.Count; i++)
             {
-                service.SaveBrand(Brands[i]);
+                if (BrandsLocal[i].Id != Brands[i].Id)
+                    service.SaveBrand(BrandsLocal[i]);
             }
         }
 
-        private void SyncroLocalBrand()
+        private async Task SyncroLocalBrandAsync()
         {
-            for (int i = 0; i < Brands.Count; i++)
+            for (int i = 0; i < (await service.ConsultBrand()).Count; i++)
             {
-                service.SaveLocalBrand(Brands[i]);
+                if (BrandsLocal[i].Id != Brands[i].Id)
+                    service.SaveLocalBrand(Brands[i]);
             }
         }
 

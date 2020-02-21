@@ -109,7 +109,7 @@ namespace APPValper.ViewModels
                         service2.SaveUser(user);
                         Console.WriteLine("logging" + service2.ConsultUser().Logged);
                         await Application.Current.MainPage.DisplayAlert("Felicidades", "Se ha conectado correctamente", "Aceptar");
-                        await Navigation.PopToRootAsync();
+                        (Application.Current).MainPage = new MainPage();
                     }
                     else
                     {

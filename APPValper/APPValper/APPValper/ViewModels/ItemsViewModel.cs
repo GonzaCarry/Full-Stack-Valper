@@ -78,7 +78,14 @@ namespace APPValper.ViewModels
                 {
                     Title = "Pantalla principal";
                     ButtonCRUDText = "CRUD";
-                    ButtonLoginText = "Conectarse";
+                    if (service.ConsultUser().Logged)
+                    {
+                        ButtonLoginText = "Desconectarse";
+                    }
+                    else
+                    {
+                        ButtonLoginText = "Conectarse";
+                    }
                     LabelTitle = "Valper Soluciones Y Mantenimientos, S.L.";
                     LabelDescription = "Asesoramiento, suministro, mantenimiento y soporte de sistemas informáticos. Desarrollo de Software a medida. Comercialización de Software para el sector de la automoción. Ya existe acuerdo de distribución y mantenimiento con empresa multinacional. Desarrollo de aplicaciones de integración para el software anteriormente mencionado para ser distribuidos a nivel nacional.";
                     ButtonHelpText = "Ayuda";
@@ -92,7 +99,14 @@ namespace APPValper.ViewModels
                 {
                     Title = "Home";
                     ButtonCRUDText = "CRUD";
-                    ButtonLoginText = "Login";
+                    if (service.ConsultUser().Logged)
+                    {
+                        ButtonLoginText = "Log out";
+                    }
+                    else
+                    {
+                        ButtonLoginText = "Login";
+                    }
                     LabelTitle = "Valper Solutions and Maintenance, S.L.";
                     LabelDescription = "Advice, supply, maintenance and support of computer systems. Custom software development. Software Marketing for the automotive sector. There is already a distribution and maintenance agreement with a multinational company. Development of integration applications for the aforementioned software to be distributed nationwide.";
                     ButtonHelpText = "Help";
@@ -177,9 +191,7 @@ namespace APPValper.ViewModels
         {
             if (IsBusy)
                 return;
-
             IsBusy = true;
-
             try
             {
                 Items.Clear();
@@ -201,15 +213,14 @@ namespace APPValper.ViewModels
 
         private async Task CRUD()
         {
-            await Navigation.PushAsync(new Functions());
-            //if (User.Users[0].Logged)
-            //{
-            //    await Navigation.PushAsync(new Functions());
-            //}
-            //else
-            //{
-            //    await Application.Current.MainPage.DisplayAlert("Error", "Debe estar conectado para acceder", "Aceptar");
-            //}
+            if (service.ConsultUser().Logged)
+            {
+                await Navigation.PushAsync(new Functions());
+            }
+            else
+            {
+                await Application.Current.MainPage.DisplayAlert("Error", "Debe estar conectado para acceder", "Aceptar");
+            }
 
         }
 
@@ -220,7 +231,19 @@ namespace APPValper.ViewModels
 
         private async Task ChangeUser()
         {
-            await Navigation.PushAsync(new Login());
+            if (service.ConsultUser().Logged)
+            {
+                var user = service.ConsultUser();
+                user.Logged = false;
+                service.SaveUser(user);
+                await Application.Current.MainPage.DisplayAlert("Felicidades", "Se ha desconectado correctamente", "Aceptar");
+                (Application.Current).MainPage = new MainPage();
+            }
+            else
+            {
+                await Navigation.PushAsync(new Login());
+            }
+            
         }
 
         private void Help()
