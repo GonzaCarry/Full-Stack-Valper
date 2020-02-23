@@ -124,7 +124,7 @@ namespace APPValper.ViewModels
                                 user.Logged = false;
                                 service.SaveUser(user);
                                 await Application.Current.MainPage.DisplayAlert("Felicidades", "Se ha registrado satisfactoriamente", "Aceptar");
-                                await Navigation.PopToRootAsync();
+                                (Application.Current).MainPage = new MainPage();
                             }
                         }
                     }
