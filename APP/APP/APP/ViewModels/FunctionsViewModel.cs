@@ -1,5 +1,7 @@
 ﻿using APP.Models;
+using APP.Models;
 using APP.Resources;
+using APP.Views;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -158,7 +160,7 @@ namespace APP.ViewModels
 
         private void Back()
         {
-            Application.Current.MainPage = new NavigationPage(new Main());
+            Application.Current.MainPage = new NavigationPage(new MainPage());
         }
     }
 }
