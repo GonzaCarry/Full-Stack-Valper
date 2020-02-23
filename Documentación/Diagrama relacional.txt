@@ -1,3 +1,0 @@
-Usuario(_Id,NombreCompleto,Permisos,Imagen)
-Usuario_Funcion(_IdUsuario*,_IdFuncion*)
-Funcion(_Id,Servidor,Consulta/Procedimiento,Descripcion)
