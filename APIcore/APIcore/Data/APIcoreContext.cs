@@ -16,6 +16,6 @@ namespace APIcore.Models
 
         public DbSet<APIcore.Models.User> User { get; set; }
 
-        public DbSet<APIcore.Models.Function> Function { get; set; }
+        //public DbSet<APIcore.Models.Function> Function { get; set; }
     }
 }
